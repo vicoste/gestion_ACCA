@@ -1,0 +1,2 @@
+U:\Projet Tutoré\Projet C#\Projet_tut_ACCA\Projet_tut_ACCA\bin\Debug\Projet_tut_ACCA.exe.config
+G:\Projet C#\Projet_tut_ACCA\Projet_tut_ACCA\bin\Debug\Projet_tut_ACCA.exe.config
