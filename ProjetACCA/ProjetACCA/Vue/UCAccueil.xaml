@@ -1,0 +1,151 @@
+﻿<UserControl x:Class="Projet_tut_ACCA.Vue.UCAccueil"
+             x:Name="UCAcceuil"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
+             xmlns:My="clr-namespace:Projet_tut_ACCA.Metier"
+             mc:Ignorable="d" 
+             MinHeight="300" MinWidth="400" d:DesignWidth="739.838"
+             Margin="0,0,75,0">
+    <UserControl.Resources>
+        <My:ListeEvent x:Key="listeEvent"/>
+        <CollectionViewSource Source="{Binding Source={StaticResource listeEvent}}" x:Key="Collec" />
+    </UserControl.Resources>
+    <Grid DataContext="{Binding Source={StaticResource Collec}}" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80" x:Name="TopBar" />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.Resources>
+            <Style TargetType="ListBox" >
+                <Setter Property="FontFamily" Value="Tahoma"/>
+            </Style>
+            <Style TargetType="TextBlock" >
+                <Setter Property="FontFamily" Value="Tahoma"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontFamily" Value="Tahoma"/>
+            </Style>
+            <Style TargetType="ComboBoxItem" >
+                <Setter Property="Background" Value="Ivory"/>
+            </Style>
+
+        </Grid.Resources>
+
+        <Border x:Name="BorderAdmin" BorderBrush="#199D33" BorderThickness="5" CornerRadius="10" Margin="5,5,5,5" >
+            <Grid Grid.Row="0" Background="White">
+
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Text="Filtre :" />
+
+                <ComboBox x:Name="comboBox" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="80,0,0,0" Height="25" Width="130" Foreground="Black" BorderBrush="#199D33" SelectionChanged="comboBox_SelectionChanged">
+                    <ComboBoxItem Content="Type" />
+                    <ComboBoxItem Content="Nom"/>
+                </ComboBox>
+
+                <Button Click="Recherche_Click" Margin="235,0,0,0" Width="25" Height="25" Background="White" BorderBrush="#199D33" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button.ToolTip>Rechercher</Button.ToolTip>
+                    <Image Source="/Image/Magnifier.png"/>
+                </Button>
+                <Button Click="Reset_Click" Margin="260,0,0,0" Width="25" MinHeight="25" Background="White" BorderBrush="#199D33" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Button.ToolTip>Réinitialiser</Button.ToolTip>
+                    <Image Source="/Image/reset.png"/>
+                </Button>
+                <Button Click="Filtre_Click" Margin="210,0,0,0" Width="25" MinHeight="25" Background="White" BorderBrush="#199D33" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <Image Source="/Image/go.png"/>
+                </Button>
+                <TextBox x:Name="tex" Visibility="Hidden"  Margin="80,0,0,0" Height="30"  Width="155" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                <Button Content="Nouvel Évènement"  Margin="300,0,155,0" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="70" BorderBrush="#199D33" />
+                <Button x:Name="suivant" Click="Suivant_Click" Margin="0,0,50,0" Background="White" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button.ToolTip>Suivant</Button.ToolTip>
+                    <Image Source="/Image/arrow_next_go_forward-128.png"  Height="41" Width="40"/>
+                </Button>
+                <Button x:Name="precedent" Click="Precedent_Click" Margin="0,0,100,0" Background="White" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <Button.ToolTip>Précédent</Button.ToolTip>
+                    <Image Source="/Image/arrowleft.png" HorizontalAlignment="Left" Height="41" Width="40" />
+                </Button>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <ListBox Width="200" x:Name="ListeB" MinWidth="100" HorizontalAlignment="Left" Background="LightGray"  IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Source={StaticResource Collec}}">
+                <ListBox.GroupStyle>
+                    <GroupStyle />
+                </ListBox.GroupStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Titre}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <Border BorderBrush="#199D33" BorderThickness="2" />
+            <Border BorderBrush="#199D33" BorderThickness="2" Grid.Column="1"/>
+            <Border BorderBrush="#199D33" BorderThickness="2" Grid.Column="2"/>
+
+            <Grid Grid.Column="2" Margin="1,0,-1,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Focusable" Value="True"/>
+                        <Setter Property="Margin" Value="5" />
+                    </Style>
+                </Grid.Resources>
+
+                <Border BorderBrush="#199D33"  BorderThickness="3" />
+
+                <Border BorderThickness="2" Padding="4" BorderBrush="#199D33">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="80*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.Resources>
+
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontFamily" Value="Tahoma"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                            </Style>
+
+                        </Grid.Resources>
+
+                        <ListBox HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Participants, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="80" Grid.Row="5" Grid.ColumnSpan="2" />
+
+                        <TextBlock Text="Heure de début "/>
+                        <TextBlock Text="Heure de fin : " Grid.Row="1"/>
+                        <TextBlock Text="description" Grid.Row="2"/>
+                        <TextBlock Text="Type : " Grid.Row="3"/>
+                        <TextBlock Text="Description : " Grid.Row="4" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                        <TextBox Text="{Binding HeureD, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding HeureF, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding DateEvent, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged }" Width="400" Height="100" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"  Grid.ColumnSpan="3" TextWrapping="Wrap"/>
+                    </Grid>
+                </Border>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Orientation="Horizontal">
+                    <Button x:Name="btnparticiper" Margin="0,0,20,0" Content="Participer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="30" Click="btnparticiper_Click"/>
+                    <Button x:Name="btnAnnulerParticip" Margin="20,0,0,0" Content="Annuler participation" HorizontalAlignment="Right" VerticalAlignment="Top" Width="120" Height="30" Click="btnAnnulerParticip_Click"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

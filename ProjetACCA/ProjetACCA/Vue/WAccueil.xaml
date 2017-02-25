@@ -1,0 +1,35 @@
+﻿<Window x:Class="Projet_tut_ACCA.Vue.WAccueil"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="WAccueil" Height="300" Width="300"
+        xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
+        WindowState="Maximized"
+        Closing="DeconnexionCroix"
+        >
+    <Grid x:Name="gridAccueil">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Content="{Binding CurrentUser.Adherent.Statut}"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Content="{Binding CurrentUser.Adherent.Nom}"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Content="{Binding CurrentUser.Adherent.Prenom}"/>
+            <Button x:Name="buttonDeconnex" Content="Deconnexion" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Click="Deconnexion" Margin="10"/>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding CurrentUser.Fonction.Role}" />
+            <ListBox MouseDoubleClick="listeClick" x:Name="listFonction" HorizontalAlignment="Center" Grid.Row="5" Margin="10" MinWidth="200"/>
+        </Grid>
+
+        <UserControl x:Name="UCglobal" Grid.Column="1"/>
+    </Grid>
+</Window>

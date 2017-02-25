@@ -1,0 +1,13 @@
+﻿<UserControl x:Class="Projet_tut_ACCA.Vue.UCInfoPers"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <TextBlock Text="Nom :" Background="LightGray" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0"/>
+        <Label x:Name="TextBoxNom" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,59,0" Width="98" />
+    </Grid>
+</UserControl>

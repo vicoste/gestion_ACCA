@@ -1,0 +1,50 @@
+﻿<Window x:Class="Projet_tut_ACCA.Vue.WAjoutMembre"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
+        mc:Ignorable="d"
+        Title="Ajout Membre" Height="500" Width="400"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="Nom" Grid.Column="0" Grid.Row="0" Content="Nom" HorizontalAlignment="Center"  VerticalAlignment="Center"  />
+        <Label x:Name="Prenom"  Grid.Column="0" Grid.Row="1" Content="Prenom" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+        <Label x:Name="Téléphone"  Grid.Column="0" Grid.Row="2" Content="Téléphone" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Label x:Name="Mail"  Grid.Column="0" Grid.Row="3" Content="Mail" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Label x:Name="Adresse"  Grid.Column="0" Grid.Row="4" Content="Adresse" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Label x:Name="Statut"  Grid.Column="0" Grid.Row="5" Content="Statut" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+        <Label x:Name="mdp"  Grid.Column="0" Grid.Row="7" Content="Mot de Passe" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        <Label x:Name="fct"  Grid.Column="0" Grid.Row="6" Content="Fonction" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+        
+        <Button x:Name="button_valider" Grid.Column="0" Grid.Row="8" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Click="button_valider_Click" Grid.RowSpan="2"/>
+        <Button x:Name="button_annuler" Grid.Column="1" Grid.Row="8" Content="Annuler" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Grid.RowSpan="2" Click="button_annuler_Click" />
+
+        <TextBox x:Name="textBox_nom" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="textBox_prenom" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="textBox_telephone" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="textBox_mail" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="textBox_adresse" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <RadioButton x:Name="radioButton_associe" Grid.Row="5" Grid.Column="1" Content="Associé"  HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="radioButton_proprio" Grid.Row="5" Grid.Column="1" Content="Proprietaire" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <TextBox x:Name="textBox_mdp" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="" TextWrapping="Wrap" Width="120"/>
+        <ComboBox x:Name="comboBox_fonction" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120"/>
+
+    </Grid>
+</Window>
