@@ -119,6 +119,9 @@ namespace Projet_tut_ACCA.Metier
             }
         }
 
-
+        public override string ToString()
+        {
+            return Nom + " " + Prenom;
+        }
     }
 }

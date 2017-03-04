@@ -83,7 +83,7 @@ namespace Projet_tut_ACCA.Vue
 
         private void DeconnexionCroix(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            app.deconnexion();
+           // app.deconnexion();
         }
     }
 }

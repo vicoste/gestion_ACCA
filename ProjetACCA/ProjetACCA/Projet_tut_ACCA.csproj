@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,7 +26,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -71,11 +71,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DBACCADataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBACCADataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Metier\ListeEvent.cs" />
     <Compile Include="Metier\Adherent.cs" />
     <Compile Include="Metier\Animal.cs" />
@@ -104,9 +99,6 @@
     <Compile Include="Vue\UCListeAdherent.xaml.cs">
       <DependentUpon>UCListeAdherent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vue\WAjoutMembre.xaml.cs">
-      <DependentUpon>WAjoutMembre.xaml</DependentUpon>
-    </Compile>
     <Page Include="Vue\UCAccueil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -131,6 +123,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vue\WAjoutMembre.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vue\WConnexion.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,14 +141,13 @@
     <Compile Include="Vue\WAccueil.xaml.cs">
       <DependentUpon>WAccueil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vue\WAjoutMembre.xaml.cs">
+      <DependentUpon>WAjoutMembre.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vue\WConnexion.xaml.cs">
       <DependentUpon>WConnexion.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Vue\WAjoutMembre.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -172,17 +167,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="DBACCADataSet.xsc">
-      <DependentUpon>DBACCADataSet.xsd</DependentUpon>
-    </None>
-    <None Include="DBACCADataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DBACCADataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DBACCADataSet.xss">
-      <DependentUpon>DBACCADataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -216,15 +200,6 @@
     <Resource Include="Image\StarWarsRebel.jpg" />
     <Resource Include="Image\themaninthehighcastle.jpg" />
     <Resource Include="Image\vikings.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DBACCA.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="DBACCA_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DBACCA.mdf</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

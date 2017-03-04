@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Merle Laure\Documents\Virgile_le_Cherie\ACCA\ProjetACCA\ProjetACCA\obj\Debug\
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\
 ProjetACCA
 none
 false
 DEBUG;TRACE
-C:\Users\Merle Laure\Documents\Virgile_le_Cherie\ACCA\ProjetACCA\ProjetACCA\App.xaml
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\App.xaml
 81532668248
-2-539912443
-331082022339
+
+32-1618350216
 151320802719
-Vue\UCAccueil.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WConnexion.xaml;Vue\WAjoutMembre.xaml;
+Vue\UCAccueil.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WAjoutMembre.xaml;Vue\WConnexion.xaml;
 
 True
 

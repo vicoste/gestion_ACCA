@@ -12,17 +12,27 @@
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="tabAdherent" ItemsSource="{Binding Path=persons, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Grid.RowSpan="2">
+        <DataGrid x:Name="tabAdherent" ItemsSource="{Binding Path=persons, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="False" Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Adherent.Nom, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Adherent.Prenom, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Header="Societaire" Binding="{Binding Adherent.Statut, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridComboBoxColumn x:Name="comboSocietaire" Header="Societaire" SelectedItemBinding="{Binding Adherent.Statut, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Adresse" Binding="{Binding Adherent.Adresse, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Téléphone" Binding="{Binding Adherent.Tel, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="e-Mail" Binding="{Binding Adherent.Mail, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Date de Debut" Binding="{Binding DateDebut, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTemplateColumn Header="Operations">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                            <Button Content="Modif." Click="saveModifAdherent"/>
+                            <Button Content="Suppr." Click="supprAdherent"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button_ajout" Content="Ajout Adhérant" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="60" Margin="10,20,0,0" Click="button_ajout_Click"/>
+        <Button x:Name="button_ajout" Content="Ajout Adhérent" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="60" Margin="10,20,0,0" Click="button_ajout_Click"/>
     </Grid>
 </UserControl>

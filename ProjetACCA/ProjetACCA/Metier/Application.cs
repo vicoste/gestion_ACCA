@@ -31,12 +31,8 @@ namespace Projet_tut_ACCA.Metier
 
         public static SqlConnection getInstance()
         {
-            if(instance == null)
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["ProjetACCA.Properties.Settings.DBACCAConnectionString"].ConnectionString;
-                return instance = new SqlConnection(connectionString);
-            }
-            return instance;
+            string connectionString = ConfigurationManager.ConnectionStrings["ProjetACCA.Properties.Settings.BDACCAConnectionString"].ConnectionString;
+            return instance = new SqlConnection(connectionString);
         }
 
         public Fonctionnaire connexion(string login, string mdp)
@@ -51,6 +47,8 @@ namespace Projet_tut_ACCA.Metier
 
         public void deconnexion()
         {
+            Fonctionnaire.ajouterFonctionnaireBDD(ListFonctionnaires);
+            instance.Close();
             instance = null;
         }
 
@@ -61,6 +59,5 @@ namespace Projet_tut_ACCA.Metier
                 PropertyChanged(this, new PropertyChangedEventArgs(v));
             }
         }
-
     }
 }

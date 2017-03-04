@@ -25,13 +25,28 @@ namespace Projet_tut_ACCA.Vue
         {
             persons = ps;
             this.DataContext = this;
-            InitializeComponent();           
+            InitializeComponent();
+            ObservableCollection<String> societaire = new ObservableCollection<string> { "Associé", "Proprietaire" };
+            comboSocietaire.ItemsSource = societaire;
         }
         
         private void button_ajout_Click(object sender, RoutedEventArgs e)
         {
             WAjoutMembre lol = new WAjoutMembre(persons);
             lol.ShowDialog();
+        }
+
+        private void supprAdherent(object sender, RoutedEventArgs e)
+        {
+            Fonctionnaire f = (Fonctionnaire) tabAdherent.SelectedItem;
+            Console.WriteLine(f.Adherent.Nom);
+            //TODO -- Suppression BDD ? Ou juste une modification pour plus qu'il ne n'affiche
+        }
+
+        private void saveModifAdherent(object sender, RoutedEventArgs e)
+        {
+            Fonctionnaire f = (Fonctionnaire)tabAdherent.SelectedItem;
+            f.IsModified = true;
         }
     }
 }

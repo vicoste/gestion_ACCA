@@ -12,7 +12,7 @@
             <ColumnDefinition Width="70*"/>
         </Grid.ColumnDefinitions>
 
-        <Grid>
+        <Grid x:Name="gridCurrent">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
@@ -22,11 +22,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Content="{Binding CurrentUser.Adherent.Statut}"/>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Content="{Binding CurrentUser.Adherent.Nom}"/>
-            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Content="{Binding CurrentUser.Adherent.Prenom}"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Content="{Binding CurrentUser.Adherent.Statut, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Content="{Binding CurrentUser.Adherent.Nom, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Content="{Binding CurrentUser.Adherent.Prenom, UpdateSourceTrigger=PropertyChanged}"/>
             <Button x:Name="buttonDeconnex" Content="Deconnexion" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Click="Deconnexion" Margin="10"/>
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding CurrentUser.Fonction.Role}" />
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4" Text="{Binding CurrentUser.Fonction.Role, UpdateSourceTrigger=PropertyChanged}" />
             <ListBox MouseDoubleClick="listeClick" x:Name="listFonction" HorizontalAlignment="Center" Grid.Row="5" Margin="10" MinWidth="200"/>
         </Grid>
 
