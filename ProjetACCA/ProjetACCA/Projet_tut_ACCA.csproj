@@ -71,6 +71,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Metier\EFonction.cs" />
     <Compile Include="Metier\ListeEvent.cs" />
     <Compile Include="Metier\Adherent.cs" />
     <Compile Include="Metier\Animal.cs" />
@@ -80,15 +81,18 @@
     <Compile Include="Metier\Evenement.cs" />
     <Compile Include="Metier\Fonction.cs" />
     <Compile Include="Metier\Fonctionnaire.cs" />
+    <Compile Include="Metier\Autorisation.cs" />
     <Compile Include="Metier\PlanChasse.cs" />
     <Compile Include="Metier\Poste.cs" />
     <Compile Include="Metier\PosteChasse.cs" />
     <Compile Include="Metier\Registre.cs" />
-    <Compile Include="Metier\ESexe.cs" />
     <Compile Include="Metier\ESocietaire.cs" />
     <Compile Include="Metier\Zone.cs" />
     <Compile Include="Vue\UCAccueil.xaml.cs">
       <DependentUpon>UCAccueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\UCPlanChasse.xaml.cs">
+      <DependentUpon>UCPlanChasse.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vue\UCCotisation.xaml.cs">
       <DependentUpon>UCCotisation.xaml</DependentUpon>
@@ -102,6 +106,10 @@
     <Page Include="Vue\UCAccueil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\UCPlanChasse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vue\UCCotisation.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +131,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vue\WGestionBague.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vue\WAjoutAnimal.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vue\WAjoutMembre.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -140,6 +156,12 @@
     </Compile>
     <Compile Include="Vue\WAccueil.xaml.cs">
       <DependentUpon>WAccueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\WGestionBague.xaml.cs">
+      <DependentUpon>WGestionBague.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\WAjoutAnimal.xaml.cs">
+      <DependentUpon>WAjoutAnimal.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vue\WAjoutMembre.xaml.cs">
       <DependentUpon>WAjoutMembre.xaml</DependentUpon>

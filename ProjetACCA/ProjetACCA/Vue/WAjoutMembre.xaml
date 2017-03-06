@@ -41,8 +41,7 @@
         <TextBox x:Name="textBox_telephone" Grid.Row="2" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
         <TextBox x:Name="textBox_mail" Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
         <TextBox x:Name="textBox_adresse" Grid.Row="4" Grid.Column="1"  HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
-        <RadioButton x:Name="radioButton_associe" Grid.Row="5" Grid.Column="1" Content="Associé"  HorizontalAlignment="Center" VerticalAlignment="Top" IsChecked="True"/>
-        <RadioButton x:Name="radioButton_proprio" Grid.Row="5" Grid.Column="1" Content="Proprietaire" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="comboBox_societaire" Grid.Row="5" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" SelectedItem="Associé"/>
         <TextBox x:Name="textBox_mdp" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Text="" TextWrapping="Wrap" Width="120"/>
         <ComboBox x:Name="comboBox_fonction" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="120" SelectedItem="Membre"/>
 

@@ -26,8 +26,7 @@ namespace Projet_tut_ACCA.Vue
             persons = ps;
             this.DataContext = this;
             InitializeComponent();
-            ObservableCollection<String> societaire = new ObservableCollection<string> { "Associé", "Proprietaire" };
-            comboSocietaire.ItemsSource = societaire;
+            comboSocietaire.ItemsSource = new ObservableCollection<string>(Enum.GetNames(typeof(ESocietaire)));
         }
         
         private void button_ajout_Click(object sender, RoutedEventArgs e)

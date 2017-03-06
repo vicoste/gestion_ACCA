@@ -28,8 +28,8 @@ namespace Projet_tut_ACCA.Vue
             InitializeComponent();
             listeFontionnaires = l;
 
-            comboBox_fonction.Items.Add("President");
-            comboBox_fonction.Items.Add("Membre");
+            comboBox_fonction.ItemsSource = new ObservableCollection<string>(Enum.GetNames(typeof(EFonction)));
+            comboBox_societaire.ItemsSource = new ObservableCollection<string>(Enum.GetNames(typeof(ESocietaire)));
         }
 
         private void button_valider_Click(object sender, RoutedEventArgs e)
@@ -41,10 +41,8 @@ namespace Projet_tut_ACCA.Vue
             if (textBox_mdp.Text.ToString().Equals("")) { MessageBox.Show("Erreur : Mot de passe vide !"); return; }
 
             string login = genererIdentifiant(textBox_nom.Text, textBox_prenom.Text);
-            string statut;
-            if ((Boolean)radioButton_proprio.IsChecked) statut = "Propietaire";
-            else statut = "Associé";
-
+            string statut = comboBox_societaire.SelectedItem.ToString();
+           
             Adherent adherent = new Adherent(0, login, textBox_mdp.Text, textBox_nom.Text, textBox_prenom.Text, statut, textBox_adresse.Text, textBox_telephone.Text, textBox_mail.Text);
 
             Fonction fonction = new Fonction(comboBox_fonction.SelectedItem.ToString());

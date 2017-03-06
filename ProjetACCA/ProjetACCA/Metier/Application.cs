@@ -22,11 +22,20 @@ namespace Projet_tut_ACCA.Metier
             set { listFonctionnaires = value; OnPropertyChanged("ListeAdherent"); }
         }
 
+        private PlanChasse planDeChasse;
+        public PlanChasse PlanDeChasse
+        {
+            get { return planDeChasse; }
+            set { planDeChasse = value; OnPropertyChanged("PlanDeChasse"); }
+        }
+
         public Application()
         {
             instance = getInstance();
             listFonctionnaires = new ObservableCollection<Fonctionnaire>();
             listFonctionnaires = Fonctionnaire.demandeInfos();
+
+            planDeChasse = new PlanChasse();
         }
 
         public static SqlConnection getInstance()

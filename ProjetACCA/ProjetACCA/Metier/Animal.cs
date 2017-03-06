@@ -10,6 +10,7 @@ namespace Projet_tut_ACCA.Metier
     public class Animal
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
         private string type;
         public string Type
         {

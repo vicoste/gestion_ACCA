@@ -63,7 +63,7 @@ namespace Projet_tut_ACCA.Vue
 
         private void listeClick(object sender, MouseButtonEventArgs e)
         {
-            String s = (String)listFonction.SelectedItem;
+            string s = (string)listFonction.SelectedItem;
             switch (s)
             {
                 case "Accueil":
@@ -77,6 +77,9 @@ namespace Projet_tut_ACCA.Vue
                     break;
                 case "Info Perso":
                     loadUC(new UCInfoPers(this));
+                    break;
+                case "Poste de Chasse":
+                    loadUC(new UCPlanChasse(app.PlanDeChasse));
                     break;
             }
         }

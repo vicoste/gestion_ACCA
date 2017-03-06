@@ -8,7 +8,8 @@ namespace Projet_tut_ACCA.Metier
 {
     public enum ESocietaire
     {
-        Associe,
+        Dieu,//Seulement Alexis
+        Associé,
         Proprietaire
     }
 }

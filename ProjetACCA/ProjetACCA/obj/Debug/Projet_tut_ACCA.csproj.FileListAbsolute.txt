@@ -123,3 +123,9 @@ C:\Users\Utilisateur\Desktop\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\Vue\WA
 C:\Users\Utilisateur\Desktop\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\ProjetACCA.g.resources
 C:\Users\Utilisateur\Desktop\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\ProjetACCA.Properties.Resources.resources
 C:\Users\Utilisateur\Desktop\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\Projet_tut_ACCA.csproj.GenerateResource.Cache
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAjoutAnimal.g.cs
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAjoutAnimal.baml
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCPlanChasse.g.cs
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCPlanChasse.baml
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WGestionBague.g.cs
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WGestionBague.baml

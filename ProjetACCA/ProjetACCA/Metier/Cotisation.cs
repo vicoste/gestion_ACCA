@@ -10,11 +10,12 @@ namespace Projet_tut_ACCA.Metier
     public class Cotisation
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private Adherent payeur;
-        public Adherent Payeur
+
+        private int noCotisation;
+        public int NoCotisation
         {
-            get { return payeur; }
-            set { payeur = value; OnPropertyChanged("Payeur"); }
+            get { return noCotisation; }
+            set { noCotisation = value;  OnPropertyChanged("NoCotisation"); }
         }
 
         private float paiement;
@@ -31,16 +32,11 @@ namespace Projet_tut_ACCA.Metier
             set { type = value; OnPropertyChanged("Type"); }
         }
 
-        public Cotisation(Adherent payeur, float paiement, string type)
+        public Cotisation(int noCotisation, float paiement, string type)
         {
-            this.payeur = payeur;
+            this.noCotisation = noCotisation;
             this.paiement = paiement;
             this.type = type;
-        }
-
-        public Cotisation demandeInfos()
-        {
-            return null;
         }
 
         private void OnPropertyChanged(string v)

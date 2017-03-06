@@ -1,0 +1,33 @@
+﻿<Window x:Class="Projet_tut_ACCA.Vue.WGestionBague"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
+        mc:Ignorable="d"
+        Height="500" Width="400"
+        ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>
+        <ListBox x:Name="listAutos" ItemsSource="{Binding autorisations, UpdateSourceTrigger=PropertyChanged}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock VerticalAlignment="Center">
+                        <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0} ({1})">
+                                <Binding Path="Key"/>
+                                <Binding Path="Value"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <TextBox x:Name="valueAuto" Grid.Row="1" Text="{Binding SelectedItem.Value, ElementName=listAutos, UpdateSourceTrigger=PropertyChanged}" />
+        <Button Content="Quitter" Grid.Row="2" Click="button_valider_Click"/>
+    </Grid>
+</Window>
