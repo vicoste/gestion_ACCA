@@ -75,8 +75,8 @@ namespace Projet_tut_ACCA.Vue
                 case "Cotisation":
                     loadUC(new UCCotisation());
                     break;
-                case "Info Perso":
-                    loadUC(new UCInfoPers(this));
+                case "Infos Personelles":
+                    loadUC(new UCInfoPers(currentUser));
                     break;
                 case "Poste de Chasse":
                     loadUC(new UCPlanChasse(app.PlanDeChasse));

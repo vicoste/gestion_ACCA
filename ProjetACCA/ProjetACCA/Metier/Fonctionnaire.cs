@@ -78,7 +78,7 @@ namespace Projet_tut_ACCA.Metier
                     sqlCommandTAd.Parameters.AddWithValue("@Mail", f.Adherent.Mail);
                     sqlCommandTAd.Parameters.AddWithValue("@Pseudo", f.Adherent.Login);
                     sqlCommandTAd.Parameters.AddWithValue("@Mdp", f.Adherent.Mdp);
-                    sqlCommandTAd.Parameters.AddWithValue("@DateAdhesion", f.DateDebut);
+                    sqlCommandTAd.Parameters.AddWithValue("@DateAdhesion", f.Adherent.DateAdhesion);
 
                     sqlCommandTAd.ExecuteNonQuery();
 
@@ -158,8 +158,8 @@ namespace Projet_tut_ACCA.Metier
                             (string)reader["Statut"],
                             (string)reader["Adresse"],
                             (string)reader["Telephone"],
-                            (string)reader["Mail"]
-                            ),
+                            (string)reader["Mail"],
+                            (DateTime)reader["DateAdhesion"]),
                            new Fonction((string)reader["RoleAdherent"]),
                            (DateTime)reader["DateDebut"]);
                     fonctionnaires.Add(f);

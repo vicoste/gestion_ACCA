@@ -5,9 +5,45 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <TextBlock Text="Nom :" Background="LightGray" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,10,0,0"/>
-        <Label x:Name="TextBoxNom" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,59,0" Width="98" />
+             d:DesignHeight="400" d:DesignWidth="400">
+
+    <Grid DataContext="{Binding currentUser}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="70*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
+        
+        <TextBlock Text="Nom :" />
+        <TextBlock x:Name="TextBoxNom" Grid.Column="1" Text="{Binding Adherent.Nom}"/>
+        <TextBlock Text="Prénom :" Grid.Row="1"/>
+        <TextBlock x:Name="TextBoxPrenom" Grid.Row="1" Grid.Column="1" Text="{Binding Adherent.Prenom}" />
+        <TextBlock Text="Statut :" Grid.Row="2" />
+        <TextBlock x:Name="TextBoxStatut" Grid.Row="2" Grid.Column="1" Text="{Binding Adherent.Statut}" />
+        <TextBlock Text="Date d'adhésion :" Grid.Row="3" />
+        <TextBlock x:Name="TextBoxDate" Grid.Row="3" Grid.Column="1" Text="{Binding Adherent.DateAdhesion}" />
+        <TextBlock Text="Adresse :" Grid.Row="4" />
+        <TextBlock x:Name="TextBoxAdresse" Grid.Row="4" Grid.Column="1" Text="{Binding Adherent.Adresse}" />
+        <TextBlock Text="N° de Téléphone :" Grid.Row="5" />
+        <TextBlock x:Name="TextBoxTel" Grid.Row="5" Grid.Column="1" Text="{Binding Adherent.Tel}" />
+        <TextBlock Text="Adresse Mail :" Grid.Row="6" />
+        <TextBlock x:Name="TextBoxMail" Grid.Row="6" Grid.Column="1" Text="{Binding Adherent.Mail}" />
+        <TextBlock Text="Qualité du Societaire :" Grid.Row="7" />
+        <TextBlock x:Name="TextBoxSoc" Grid.Row="7" Grid.Column="1" Text="{Binding Fonction.Role}" />
     </Grid>
 </UserControl>

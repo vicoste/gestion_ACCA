@@ -67,7 +67,21 @@ namespace Projet_tut_ACCA.Metier
             set { mail = value; OnPropertyChanged("Mail"); }
         }
 
-        public Adherent(int idAdherent, string login, string mdp, string nom, string prenom, String statut, string adresse, string tel, string mail)
+        private DateTime dateAdhesion;
+        public DateTime DateAdhesion
+        {
+            get { return dateAdhesion; }
+            set { dateAdhesion = value; OnPropertyChanged("DateAdhesion"); }
+        }
+
+        private DateTime dateDepart;
+        public DateTime DateDepart
+        {
+            get { return dateDepart; }
+            set { dateDepart = value; OnPropertyChanged("DateDepart"); }
+        }
+
+        public Adherent(int idAdherent, string login, string mdp, string nom, string prenom, string statut, string adresse, string tel, string mail, DateTime dateAdhesion)
         {
             this.idAdherent = idAdherent;
             this.login = login;
@@ -78,7 +92,12 @@ namespace Projet_tut_ACCA.Metier
             this.adresse = adresse;
             this.tel = tel;
             this.mail = mail;
+            this.dateAdhesion = dateAdhesion;
         }
+
+        public Adherent(int idAdherent, string login, string mdp, string nom, string prenom, string statut, string adresse, string tel, string mail)
+            : this(idAdherent, login, mdp, nom, prenom, statut, adresse, tel, mail, DateTime.Today)
+        { }
 
         public Adherent()
         {

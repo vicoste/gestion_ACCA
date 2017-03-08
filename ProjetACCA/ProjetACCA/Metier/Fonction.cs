@@ -30,16 +30,18 @@ namespace Projet_tut_ACCA.Metier
         {
             this.role = role;
             fonctions = new ObservableCollection<string>();
+            fonctions.Add("Accueil");
+            fonctions.Add("Infos Personelles");
             switch (role)
             {
                 case "President":
-                    fonctions.Add("Accueil");
+                    
                     fonctions.Add("Les Adhérents");
                     fonctions.Add("Cotisation");
                     fonctions.Add("Poste de Chasse");
                     break;
                 case "Membre":
-                    fonctions.Add("Accueil");
+                    
                     break;
                 default:
                     break;

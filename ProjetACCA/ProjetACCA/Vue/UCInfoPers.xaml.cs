@@ -21,19 +21,13 @@ namespace Projet_tut_ACCA.Vue
     /// </summary>
     public partial class UCInfoPers : UserControl
     {
-        private WAccueil a;
-        private Adherent CurentUser;
-        public UCInfoPers(WAccueil a)
+        public Fonctionnaire currentUser { get; set; }
+        public UCInfoPers(Fonctionnaire cF)
         {
+            this.DataContext = this;
+            currentUser = cF;
+
             InitializeComponent();
-            this.a = a;
-            CurentUser = a.CurrentUser.Adherent;
-            TextBoxNom.Content = CurentUser.Nom;
         }
-
-
     }
-
-
-
 }
