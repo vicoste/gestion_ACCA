@@ -90,6 +90,9 @@
     <Compile Include="Vue\UCAccueil.xaml.cs">
       <DependentUpon>UCAccueil.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vue\UCPosteChasse.xaml.cs">
+      <DependentUpon>UCPosteChasse.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vue\UCPlanChasse.xaml.cs">
       <DependentUpon>UCPlanChasse.xaml</DependentUpon>
     </Compile>
@@ -105,6 +108,10 @@
     <Page Include="Vue\UCAccueil.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\UCPosteChasse.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vue\UCPlanChasse.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -18,6 +18,16 @@ namespace Projet_tut_ACCA.Metier
             set { zones = value;  OnPropertyChanged("Zones"); }
         }
 
+        public PosteChasse()
+        {
+            zones = demandeZones();
+        }
+
+        private ObservableCollection<Zone> demandeZones()
+        {
+            return new ObservableCollection<Zone>() { new Zone("YoloZone"), new Zone("AlexisZone") };
+        }
+
         private void OnPropertyChanged(string v)
         {
             if (PropertyChanged != null)

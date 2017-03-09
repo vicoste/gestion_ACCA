@@ -35,10 +35,10 @@ namespace Projet_tut_ACCA.Metier
             switch (role)
             {
                 case "President":
-                    
                     fonctions.Add("Les Adhérents");
                     fonctions.Add("Cotisation");
                     fonctions.Add("Plan de Chasse");
+                    fonctions.Add("Les Zones");
                     break;
                 case "Membre":
                     

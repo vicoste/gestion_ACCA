@@ -48,13 +48,14 @@ namespace Projet_tut_ACCA.Metier
             set { observation = value; OnPropertyChanged("Observation"); }
         }
 
-        public Animal(string type, DateTime datePrelevement, char sexe, float masse, string observation)
+        public Animal(string type, DateTime datePrelevement, char sexe, float masse, string observation, int idPoste = 0)
         {
             this.type = type;
             this.datePrelevement = datePrelevement;
             this.sexe = sexe;
             this.masse = masse;
             this.observation = observation;
+            
         }
 
         private void OnPropertyChanged(string v)

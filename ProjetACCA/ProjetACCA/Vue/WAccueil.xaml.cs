@@ -81,6 +81,9 @@ namespace Projet_tut_ACCA.Vue
                 case "Plan de Chasse":
                     loadUC(new UCPlanChasse(app.PlanDeChasse));
                     break;
+                case "Les Zones":
+                    loadUC(new UCPosteChasse(app.PosteDeChasse.Zones));
+                    break;
             }
         }
 

@@ -29,6 +29,13 @@ namespace Projet_tut_ACCA.Metier
             set { planDeChasse = value; OnPropertyChanged("PlanDeChasse"); }
         }
 
+        private PosteChasse posteDeChasse;
+        public PosteChasse PosteDeChasse
+        {
+            get { return posteDeChasse; }
+            set { posteDeChasse = value; OnPropertyChanged("PosteDeChasse"); }
+        }
+
         private ObservableCollection<Evenement> listEvents;
         public ObservableCollection<Evenement> ListEvents
         {
@@ -38,15 +45,15 @@ namespace Projet_tut_ACCA.Metier
 
         public Application()
         {
-            instance = getInstance();
+            //instance = getInstance();
+
             listFonctionnaires = new ObservableCollection<Fonctionnaire>();
             listFonctionnaires = Fonctionnaire.demandeInfos();
-            listEvents = new ObservableCollection<Evenement>();
 
-            //remplace par BDD mais besoin de vue add Event
-            /*listEvents.Add(new Evenement(0, "Picnic", new DateTime(2017, 10, 18), "Une bonne bouffe", "tt", new ObservableCollection<Adherent>()));
-            listEvents.Add(new Evenement(0, "Aprem code", new DateTime(2017, 10, 12), "Journée de codage", "depression", new ObservableCollection<Adherent>()));*/
+            listEvents = new ObservableCollection<Evenement>();
             listEvents = Evenement.recupEvenement();
+
+            posteDeChasse = new PosteChasse();
 
             planDeChasse = new PlanChasse();
         }

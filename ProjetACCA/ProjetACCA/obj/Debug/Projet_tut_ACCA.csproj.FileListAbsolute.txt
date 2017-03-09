@@ -72,7 +72,6 @@ C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCL
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAccueil.g.cs
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WConnexion.g.cs
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\App.g.cs
-C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\ProjetACCA_MarkupCompile.cache
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\ProjetACCA_MarkupCompile.lref
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\bin\Debug\ProjetACCA.exe.config
@@ -163,3 +162,5 @@ C:\Users\Guillaume\OneDrive\Documents\gestion-acca\ProjetACCA\ProjetACCA\obj\Deb
 C:\Users\Guillaume\OneDrive\Documents\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\ProjetACCA.g.resources
 C:\Users\Guillaume\OneDrive\Documents\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\ProjetACCA.Properties.Resources.resources
 C:\Users\Guillaume\OneDrive\Documents\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\Projet_tut_ACCA.csproj.GenerateResource.Cache
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCPosteChasse.g.cs
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCPosteChasse.baml
