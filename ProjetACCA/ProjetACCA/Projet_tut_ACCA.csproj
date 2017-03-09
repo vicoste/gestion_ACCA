@@ -72,7 +72,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Metier\EFonction.cs" />
-    <Compile Include="Metier\ListeEvent.cs" />
     <Compile Include="Metier\Adherent.cs" />
     <Compile Include="Metier\Animal.cs" />
     <Compile Include="Metier\Application.cs" />

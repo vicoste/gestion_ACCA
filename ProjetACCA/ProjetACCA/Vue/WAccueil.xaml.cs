@@ -58,7 +58,7 @@ namespace Projet_tut_ACCA.Vue
             this.DataContext = this;
             changeVisibility();
 
-            loadUC(new UCAccueil(this));
+            loadUC(new UCAccueil(this, app.ListEvents));
         }
 
         private void listeClick(object sender, MouseButtonEventArgs e)
@@ -67,7 +67,7 @@ namespace Projet_tut_ACCA.Vue
             switch (s)
             {
                 case "Accueil":
-                    loadUC(new UCAccueil(this));
+                    loadUC(new UCAccueil(this, app.ListEvents));
                     break;
                 case "Les Adhérents":
                     loadUC(new UCListeAdherent(app.ListFonctionnaires));
@@ -78,7 +78,7 @@ namespace Projet_tut_ACCA.Vue
                 case "Infos Personelles":
                     loadUC(new UCInfoPers(currentUser));
                     break;
-                case "Poste de Chasse":
+                case "Plan de Chasse":
                     loadUC(new UCPlanChasse(app.PlanDeChasse));
                     break;
             }

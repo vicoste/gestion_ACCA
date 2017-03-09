@@ -25,14 +25,7 @@ namespace Projet_tut_ACCA.Metier
         }
 
         public CarnetBattue(string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string heureD, string heureF)
-        {
-            Titre = titre;
-            DateEvent = dateEvent;
-            Type = type;
-            Description = description;
-            Participants = participants;
-            this.heureD = heureD;
-            this.heureF = heureF;
-        }
+            : base(0,titre,dateEvent,type,description,participants)
+        { }
     }
 }

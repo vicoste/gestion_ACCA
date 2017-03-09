@@ -4,15 +4,15 @@
 winexe
 C#
 .cs
-C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\
+C:\Users\Guillaume\OneDrive\Documents\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\
 ProjetACCA
 none
 false
 DEBUG;TRACE
-C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\App.xaml
+C:\Users\Guillaume\OneDrive\Documents\gestion-acca\ProjetACCA\ProjetACCA\App.xaml
 111220445040
 
-361460837083
+35149895687
 151320802719
 Vue\UCAccueil.xaml;Vue\UCPlanChasse.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WGestionBague.xaml;Vue\WAjoutAnimal.xaml;Vue\WAjoutMembre.xaml;Vue\WConnexion.xaml;
 

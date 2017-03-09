@@ -38,7 +38,7 @@ namespace Projet_tut_ACCA.Metier
                     
                     fonctions.Add("Les Adhérents");
                     fonctions.Add("Cotisation");
-                    fonctions.Add("Poste de Chasse");
+                    fonctions.Add("Plan de Chasse");
                     break;
                 case "Membre":
                     

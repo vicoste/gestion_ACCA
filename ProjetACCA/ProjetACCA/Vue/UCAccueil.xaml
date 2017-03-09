@@ -9,11 +9,7 @@
              mc:Ignorable="d" 
              MinHeight="300" MinWidth="400" d:DesignWidth="739.838"
              Margin="0,0,75,0">
-    <UserControl.Resources>
-        <My:ListeEvent x:Key="listeEvent"/>
-        <CollectionViewSource Source="{Binding Source={StaticResource listeEvent}}" x:Key="Collec" />
-    </UserControl.Resources>
-    <Grid DataContext="{Binding Source={StaticResource Collec}}" >
+    <Grid DataContext="{Binding LesEvents}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="80" x:Name="TopBar" />
             <RowDefinition/>
@@ -75,7 +71,7 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <ListBox Width="200" x:Name="ListeB" MinWidth="100" HorizontalAlignment="Left" Background="LightGray"  IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Source={StaticResource Collec}}">
+            <ListBox Width="200" x:Name="ListeB" MinWidth="100" HorizontalAlignment="Left" Background="LightGray" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Source=Self, Path=LesEvents}">
                 <ListBox.GroupStyle>
                     <GroupStyle />
                 </ListBox.GroupStyle>
