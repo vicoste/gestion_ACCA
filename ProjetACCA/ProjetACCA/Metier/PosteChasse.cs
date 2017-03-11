@@ -20,12 +20,7 @@ namespace Projet_tut_ACCA.Metier
 
         public PosteChasse()
         {
-            zones = demandeZones();
-        }
-
-        private ObservableCollection<Zone> demandeZones()
-        {
-            return new ObservableCollection<Zone>() { new Zone("YoloZone"), new Zone("AlexisZone") };
+            zones = Zone.demandeInfos();
         }
 
         private void OnPropertyChanged(string v)

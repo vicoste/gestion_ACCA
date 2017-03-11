@@ -20,7 +20,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <!--DataContext="{Binding ElementName=listZones, Path=SelectedItem.LesPostes}"-->
-        <ListBox x:Name="listPostes" Grid.Column="1" ItemsSource="{Binding SelectedItem.LesPostes, ElementName=listZones}" >
+        <ListBox x:Name="listPostes" Grid.Column="1" ItemsSource="{Binding SelectedItem.ListPoste, ElementName=listZones}" >
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding Libelle}"/>

@@ -28,16 +28,27 @@ namespace Projet_tut_ACCA.Vue
             pc = p;
             this.DataContext = this;
             InitializeComponent();
+
+            foreach(var a in p.Autorisations)
+            {
+                if(a.Value != -1)
+                {
+                    int c = LesAnimaux.Count(ax => ax.Type.Equals(a.Key));
+                    for (int i = c + 1; i <= a.Value; i++)
+                        LesAnimaux.Add(new Animal(a.Key, new DateTime(1,1,1), 'N', 0, "Non rempli", 0, i));
+                }
+            }
         }
 
         private void ajouterBague(object sender, RoutedEventArgs e)
         {
-            WAjoutAnimal a = new WAjoutAnimal(pc.Autorisations);
-            if(a.ShowDialog() == true)
+            WAjoutAnimal a = new WAjoutAnimal(pc.Autorisations, pc.LesAnimaux);
+            if (a.ShowDialog() == true)
             {
                 //ajouter à la liste des animaux pc.lesAnimaux (rajouter metier) depuis a.newA
                 LesAnimaux.Add(a.newA);
             }
+            else gridAnimaux.Items.Refresh();               
         }
 
         private void gestionBague(object sender, RoutedEventArgs e)

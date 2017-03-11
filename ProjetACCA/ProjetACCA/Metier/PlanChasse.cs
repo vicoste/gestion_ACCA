@@ -34,8 +34,7 @@ namespace Projet_tut_ACCA.Metier
 
             lesAnimaux = new ObservableCollection<Animal>();
             //getInfos dans animaux
-            Animal a = new Animal("Cervidé", DateTime.Today, 'M', 2, "C'est bambi");
-            a.NumBague = 51654;
+            Animal a = new Animal("Cervidé", DateTime.Today, 'M', 2, "C'est bambi", 1, 1);
             lesAnimaux.Add(a);
         }
 

@@ -22,12 +22,14 @@ namespace Projet_tut_ACCA.Vue
     public partial class WAjoutAnimal : Window
     {
         private ObservableCollection<Autorisation> autorisations;
+        private ObservableCollection<Animal> lesAnimaux;
         public Animal newA;
 
-        public WAjoutAnimal(ObservableCollection<Autorisation> a)
+        public WAjoutAnimal(ObservableCollection<Autorisation> a, ObservableCollection<Animal> l)
         {
             InitializeComponent();
             autorisations = a;
+            lesAnimaux = l;
 
             foreach (Autorisation au in autorisations)
                 comboBoxType.Items.Add(au.Key);
@@ -59,10 +61,27 @@ namespace Projet_tut_ACCA.Vue
             else
             { MessageBox.Show("Erreur : la date est vide !"); return; }
 
-            newA = new Animal(type, datePrelev, sexe, masse, obs);
-            newA.NumBague = getBague(type);
+            //newA = new Animal(type, datePrelev, sexe, masse, obs, 0 , 0);
+            int numBague = getBague(type);
+            if (numBague == -2)
+            {
+                DialogResult = false;
+                return;
+            }
+            if (numBague == -1)
+            {
+                newA = new Animal(type, datePrelev, sexe, masse, obs, 0, numBague);
+                DialogResult = true;
+                return;
+            }
 
-            DialogResult = true;
+            Animal a = lesAnimaux.First(an => an.NumBague == numBague);
+            a.DatePrelevement = datePrelev;
+            a.Sexe = sexe;
+            a.Observation = obs;
+            a.Masse = masse;
+
+            DialogResult = false;
         }
 
         private void button_annuler_Click(object sender, RoutedEventArgs e)
@@ -72,16 +91,12 @@ namespace Projet_tut_ACCA.Vue
 
         private int getBague(string type)
         {
-            int value;
-            Autorisation autorisation = null;
-            foreach (Autorisation a in autorisations)
-                if (a.Key.Equals(type))
-                {
-                    autorisation = a;
-                    break;
-                }
-            value = autorisation.Value;
-            if (value != -1) autorisation.Value--;
+            int value = -1;
+            Autorisation aut = autorisations.First(a => a.Key.Equals(type));
+            value = aut.Value;
+            if (value == -1) return value;
+
+            value = lesAnimaux.First(a => a.Observation.Equals("Non rempli") && a.Type.Equals(type)).NumBague;
             return value;
         }
     }
