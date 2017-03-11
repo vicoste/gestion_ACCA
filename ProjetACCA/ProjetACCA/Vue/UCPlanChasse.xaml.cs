@@ -20,11 +20,13 @@ namespace Projet_tut_ACCA.Vue
     public partial class UCPlanChasse : UserControl
     {
         private PlanChasse pc;
+        private PosteChasse poc;
         public ObservableCollection<Animal> LesAnimaux { get; set; }
 
-        public UCPlanChasse(PlanChasse p)
+        public UCPlanChasse(PlanChasse p, PosteChasse po)
         {
             LesAnimaux = p.LesAnimaux;
+            poc = po;
             pc = p;
             this.DataContext = this;
             InitializeComponent();
@@ -35,14 +37,14 @@ namespace Projet_tut_ACCA.Vue
                 {
                     int c = LesAnimaux.Count(ax => ax.Type.Equals(a.Key));
                     for (int i = c + 1; i <= a.Value; i++)
-                        LesAnimaux.Add(new Animal(a.Key, new DateTime(1,1,1), 'N', 0, "Non rempli", 0, i));
+                        LesAnimaux.Add(new Animal(a.Key, i, new DateTime(1,1,1), "N", 0, "Non rempli", "Non"));
                 }
             }
         }
 
         private void ajouterBague(object sender, RoutedEventArgs e)
         {
-            WAjoutAnimal a = new WAjoutAnimal(pc.Autorisations, pc.LesAnimaux);
+            WAjoutAnimal a = new WAjoutAnimal(pc.Autorisations, pc.LesAnimaux, poc.Zones);
             if (a.ShowDialog() == true)
             {
                 //ajouter à la liste des animaux pc.lesAnimaux (rajouter metier) depuis a.newA

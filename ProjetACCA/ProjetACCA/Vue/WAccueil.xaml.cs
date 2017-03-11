@@ -79,7 +79,7 @@ namespace Projet_tut_ACCA.Vue
                     loadUC(new UCInfoPers(currentUser));
                     break;
                 case "Plan de Chasse":
-                    loadUC(new UCPlanChasse(app.PlanDeChasse));
+                    loadUC(new UCPlanChasse(app.PlanDeChasse, app.PosteDeChasse));
                     break;
                 case "Les Zones":
                     loadUC(new UCPosteChasse(app.PosteDeChasse.Zones));

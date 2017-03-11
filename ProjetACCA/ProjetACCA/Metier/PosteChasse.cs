@@ -20,7 +20,7 @@ namespace Projet_tut_ACCA.Metier
 
         public PosteChasse()
         {
-            zones = Zone.demandeInfos();
+            zones = Zone.recupZones();
         }
 
         private void OnPropertyChanged(string v)

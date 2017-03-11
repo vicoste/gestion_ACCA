@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
-        Height="500" Width="400"
+        Height="600" Width="400"
         ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
 
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
@@ -25,7 +26,8 @@
         <Label Grid.Row="1" Content="Sexe" HorizontalAlignment="Center"  VerticalAlignment="Center" />
         <Label Grid.Row="2" Content="Date" HorizontalAlignment="Center"  VerticalAlignment="Center" />
         <Label Grid.Row="3" Content="Masse" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Grid.Row="4" Content="Observation" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        <Label Grid.Row="4" Content="Zone/Poste" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Grid.Row="5" Content="Observation" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
 
         <Button x:Name="button_valider" Grid.Column="1" Grid.Row="6" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Click="button_valider_Click" Grid.RowSpan="2"/>
         <Button x:Name="button_annuler" Grid.Column="0" Grid.Row="6" Content="Annuler" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Grid.RowSpan="2" Click="button_annuler_Click" />
@@ -52,6 +54,10 @@
         </WrapPanel>
         <DatePicker x:Name="datePick"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Selectioner Une date"/>
         <TextBox x:Name="textBoxMasse" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
-        <TextBox x:Name="textBoxObs" Grid.Row="4" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="350" Height="100"/>
+
+        <ComboBox x:Name="comboBoxZone" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0" Width="150" IsSynchronizedWithCurrentItem="True"/>
+        <ComboBox x:Name="comboBoxPoste" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" SelectedIndex="0" Width="150" ItemsSource="{Binding ElementName=comboBoxZone, Path=SelectedItem.ListPoste}" />
+
+        <TextBox x:Name="textBoxObs" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="350" Height="100"/>
     </Grid>
 </Window>

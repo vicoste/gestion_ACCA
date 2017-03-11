@@ -30,12 +30,8 @@ namespace Projet_tut_ACCA.Metier
             //query BDD
             autorisations = new ObservableCollection<Autorisation>();
             autorisations.Add(new Autorisation("Cervidé", 10));
-            autorisations.Add(new Autorisation("Nouveau Type", -1));
 
-            lesAnimaux = new ObservableCollection<Animal>();
-            //getInfos dans animaux
-            Animal a = new Animal("Cervidé", DateTime.Today, 'M', 2, "C'est bambi", 1, 1);
-            lesAnimaux.Add(a);
+            lesAnimaux = Animal.recupAnimaux();
         }
 
         private void OnPropertyChanged(string v)

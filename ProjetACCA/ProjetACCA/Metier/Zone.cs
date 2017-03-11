@@ -33,14 +33,25 @@ namespace Projet_tut_ACCA.Metier
             set { listPoste = value; OnPropertyChanged("ListPoste"); }
         }
 
-        public Zone(int idZone, string nom, ObservableCollection<Poste> listPoste)
+        private int isChassable;
+        public int IsChassable
+        {
+            get { return isChassable; }
+            set { isChassable = value; OnPropertyChanged("IsChassable"); }
+        }
+
+        public bool IsNew { get; set; }
+        public bool IsModified { get; set; }
+
+        public Zone(int idZone, string nom, ObservableCollection<Poste> listPoste, int isChassable)
         {
             this.idZone = idZone;
             this.nom = nom;
             this.listPoste = listPoste;
+            this.isChassable = isChassable;
         }
 
-        public static ObservableCollection<Zone> demandeInfos()
+        public static ObservableCollection<Zone> recupZones()
         {
             ObservableCollection<Zone> zones = new ObservableCollection<Zone>();
             using (SqlConnection connection = Application.getInstance())
@@ -53,7 +64,8 @@ namespace Projet_tut_ACCA.Metier
                     Zone z = new Zone(
                             (int)reader["IdZone"],
                             (string)reader["Nom"],
-                            recupPostes((int)reader["IdZone"]));
+                            recupPostes((int)reader["IdZone"]),
+                            (int)reader["IsChassable"]);
                     zones.Add(z);
                 }
                 connection.Close();
@@ -84,6 +96,49 @@ namespace Projet_tut_ACCA.Metier
             }
             return postes;
         }
+
+        public static void ajoutZoneBDD(ObservableCollection<Zone> lz)
+        {
+            SqlConnection connection = Application.getInstance();
+
+            foreach (Zone z in lz)
+            {
+                if (z.IsNew)
+                {
+
+                    //---------INSERT INTO TZone---------
+                    connection.Open();
+
+                    string commandTAd = "INSERT INTO TZone (Nom, IsChassable) VALUES (@Nom, 1)";
+
+                    SqlCommand sqlCommandTAd = new SqlCommand(commandTAd, connection);
+
+                    sqlCommandTAd.Parameters.AddWithValue("@Nom", z.Nom);
+
+                    sqlCommandTAd.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+
+                if (z.IsModified)
+                {
+                    //---------UPDATE TZone---------
+                    connection.Open();
+
+                    string commandUTAd = "UPDATE TZone SET Nom = @Nom, IsChassable = @IsChassable WHERE IdZone = @IdZone";
+
+                    SqlCommand sqlCommandUTAd = new SqlCommand(commandUTAd, connection);
+
+                    sqlCommandUTAd.Parameters.AddWithValue("@Nom", z.Nom);
+                    sqlCommandUTAd.Parameters.AddWithValue("@IsChassable", z.IsChassable);
+                    sqlCommandUTAd.Parameters.AddWithValue("@IdZone", z.IdZone);
+
+                    sqlCommandUTAd.ExecuteNonQuery();
+
+                    connection.Close();
+                }
+            }
+        }        
 
         private void OnPropertyChanged(string v)
         {

@@ -25,7 +25,7 @@ namespace Projet_tut_ACCA.Vue
         private ObservableCollection<Animal> lesAnimaux;
         public Animal newA;
 
-        public WAjoutAnimal(ObservableCollection<Autorisation> a, ObservableCollection<Animal> l)
+        public WAjoutAnimal(ObservableCollection<Autorisation> a, ObservableCollection<Animal> l, ObservableCollection<Zone> z)
         {
             InitializeComponent();
             autorisations = a;
@@ -33,6 +33,9 @@ namespace Projet_tut_ACCA.Vue
 
             foreach (Autorisation au in autorisations)
                 comboBoxType.Items.Add(au.Key);
+            comboBoxType.Items.Add("Nouveau Type");
+
+            comboBoxZone.ItemsSource = z;
         }
 
         private void button_valider_Click(object sender, RoutedEventArgs e)
@@ -47,13 +50,16 @@ namespace Projet_tut_ACCA.Vue
             if (type.Equals("")) { MessageBox.Show("Erreur : le nouveau type est vide !"); return; }
 
             if (textBoxMasse.Text.ToString().Equals("")) { MessageBox.Show("Erreur : la Masse est vide !"); return; }
-            float masse;
-            if(!Single.TryParse(textBoxMasse.Text.ToString(), out masse)) { MessageBox.Show("Erreur : la Masse n'est pas un nombre !"); return; }
+            int masse;
+            if(!Int32.TryParse(textBoxMasse.Text.ToString(), out masse)) { MessageBox.Show("Erreur : la Masse n'est pas un nombre !"); return; }
+
+            if(comboBoxPoste.SelectedItem == null) { MessageBox.Show("Erreur : le poste de chasse est vide !"); return; }
+            string idPoste = ((Poste)comboBoxPoste.SelectedItem).Numero;
 
             string obs = textBoxObs.Text.ToString();
             if (obs.Equals("")) { MessageBox.Show("Erreur : l'Observation est vide !"); return; }
 
-            char sexe = (bool)rbSexeM.IsChecked ? 'M' : 'F';
+            string sexe = (bool)rbSexeM.IsChecked ? "M" : "F";
 
             DateTime datePrelev;
             if (datePick.SelectedDate != null)
@@ -61,7 +67,6 @@ namespace Projet_tut_ACCA.Vue
             else
             { MessageBox.Show("Erreur : la date est vide !"); return; }
 
-            //newA = new Animal(type, datePrelev, sexe, masse, obs, 0 , 0);
             int numBague = getBague(type);
             if (numBague == -2)
             {
@@ -70,7 +75,7 @@ namespace Projet_tut_ACCA.Vue
             }
             if (numBague == -1)
             {
-                newA = new Animal(type, datePrelev, sexe, masse, obs, 0, numBague);
+                newA = new Animal(type, numBague, datePrelev, sexe, masse, obs, idPoste);
                 DialogResult = true;
                 return;
             }
@@ -80,6 +85,7 @@ namespace Projet_tut_ACCA.Vue
             a.Sexe = sexe;
             a.Observation = obs;
             a.Masse = masse;
+            a.IdPoste = idPoste;
 
             DialogResult = false;
         }
