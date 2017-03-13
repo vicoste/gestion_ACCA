@@ -36,7 +36,7 @@
 
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Left" Margin="15,0,0,0" Text="Filtre :" />
 
-                <ComboBox x:Name="comboBox" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="80,0,0,0" Height="25" Width="130" Foreground="Black" BorderBrush="#199D33" SelectionChanged="comboBox_SelectionChanged">
+                <ComboBox x:Name="comboBox" Cursor="Hand" VerticalAlignment="Center" HorizontalAlignment="Left" Background="White" Margin="80,0,0,0" Height="25" Width="130" Foreground="Black" BorderBrush="#199D33">
                     <ComboBoxItem Content="Type" />
                     <ComboBoxItem Content="Nom"/>
                 </ComboBox>

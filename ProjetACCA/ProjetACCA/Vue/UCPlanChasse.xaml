@@ -12,10 +12,10 @@
             <RowDefinition Height="70*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
-        <DataGrid x:Name="gridAnimaux" ItemsSource="{Binding Path=LesAnimaux, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Grid.Row="1" CanUserSortColumns="False" IsReadOnly="True">
+        <DataGrid x:Name="gridAnimaux" ItemsSource="{Binding Path=LesAnimaux, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Grid.Row="1" IsReadOnly="True">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Type" Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" CanUserReorder="False" CanUserSort="False" MinWidth="100"/>
-                <DataGridTextColumn Header="N° Bague" Binding="{Binding NumBague, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Type" Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" CanUserReorder="False" MinWidth="100"/>
+                <DataGridTextColumn Header="N° Bague" Binding="{Binding NumBague, UpdateSourceTrigger=PropertyChanged}" />
                 <DataGridTextColumn Header="Date" Binding="{Binding DatePrelevement, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Sexe" Binding="{Binding Sexe, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Poids" Binding="{Binding Masse, UpdateSourceTrigger=PropertyChanged}"/>

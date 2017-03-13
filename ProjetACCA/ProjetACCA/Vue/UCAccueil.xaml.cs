@@ -114,10 +114,5 @@ namespace Projet_tut_ACCA.Vue
             view.GroupDescriptions.Clear();
             view.SortDescriptions.Clear();
         }
-
-        private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
     }
 }

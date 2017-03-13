@@ -269,7 +269,7 @@ namespace Projet_tut_ACCA.Metier
             connection.Close();
 
             Adherent aR = Participants.First(ad => ad.IdAdherent == adherent.IdAdherent);
-            Participants.Remove(aR);
+            if(aR != null) Participants.Remove(aR);
         }
     }
 }

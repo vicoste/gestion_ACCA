@@ -108,5 +108,10 @@ namespace Projet_tut_ACCA.Metier
                 PropertyChanged(this, new PropertyChangedEventArgs(v));
             }
         }
+
+        public override string ToString()
+        {
+            return Libelle;
+        }
     }
 }

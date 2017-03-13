@@ -30,16 +30,6 @@ namespace Projet_tut_ACCA.Vue
             pc = p;
             this.DataContext = this;
             InitializeComponent();
-
-            foreach(var a in p.Autorisations)
-            {
-                if(a.Value != -1)
-                {
-                    int c = LesAnimaux.Count(ax => ax.Type.Equals(a.Key));
-                    for (int i = c + 1; i <= a.Value; i++)
-                        LesAnimaux.Add(new Animal(a.Key, i, new DateTime(1,1,1), "N", 0, "Non rempli", "Non"));
-                }
-            }
         }
 
         private void ajouterBague(object sender, RoutedEventArgs e)

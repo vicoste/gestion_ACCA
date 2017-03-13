@@ -28,10 +28,23 @@ namespace Projet_tut_ACCA.Metier
         public PlanChasse()
         {
             //query BDD
-            autorisations = new ObservableCollection<Autorisation>();
-            autorisations.Add(new Autorisation("Cervidé", 10));
+            autorisations = Autorisation.recupAutorisation();         
 
             lesAnimaux = Animal.recupAnimaux();
+
+            foreach (var a in autorisations)
+            {
+                if (a.Value != -1)
+                {
+                    int i = a.PremiereBague;
+                    for (int c = i; c < a.Value + i; c++)
+                    {
+                        int count = lesAnimaux.Count(an => an.NumBague == c);
+                        if (count == 0)
+                            LesAnimaux.Add(new Animal(a.Key, c, new DateTime(1, 1, 1), "N", 0, "Non rempli", "Non"));
+                    }
+                }
+            }
         }
 
         private void OnPropertyChanged(string v)
