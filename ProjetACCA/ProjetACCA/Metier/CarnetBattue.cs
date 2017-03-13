@@ -10,7 +10,7 @@ namespace Projet_tut_ACCA.Metier
 {
     class CarnetBattue : Evenement
     {
-        private string heureD;
+        /*private string heureD;
         public string HeureD
         {
             get { return heureD; }
@@ -22,10 +22,10 @@ namespace Projet_tut_ACCA.Metier
         {
             get { return heureF; }
             set { heureF = value; OnPropertyChanged("HeureF"); }
-        }
+        }*/
 
         public CarnetBattue(string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string heureD, string heureF)
-            : base(0,titre,dateEvent,type,description,participants)
+            : base(0,titre,dateEvent,type,description,participants, heureD, heureF)
         { }
     }
 }

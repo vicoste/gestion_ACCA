@@ -60,10 +60,8 @@ namespace Projet_tut_ACCA.Vue
                 tex.Text.ToLower();
                 if (tex.Text != null)
                 {
-                    /*
-                    ICollectionView srcEv = (LesEvents as CollectionViewSource).View;
+                    ICollectionView srcEv = CollectionViewSource.GetDefaultView(LesEvents);
                     srcEv.Filter = new Predicate<object>(n => (n as Evenement).Titre.ToLower().Contains(tex.Text.ToLower()));
-                    */
                 }
                 tex.Visibility = Visibility.Hidden;
                 comboBox.Visibility = Visibility.Visible;
@@ -75,7 +73,10 @@ namespace Projet_tut_ACCA.Vue
         {
             Evenement eve = (Evenement)ListeB.SelectedItem;
 
-            eve.participerEvenement(a.CurrentUser.Adherent);
+            if (eve != null && eve.Participants.Count(ad => ad.IdAdherent == a.CurrentUser.Adherent.IdAdherent) == 0)
+            {
+                eve.participerEvenement(a.CurrentUser.Adherent);
+            }
         }
 
 
@@ -83,26 +84,35 @@ namespace Projet_tut_ACCA.Vue
         {
             Evenement eve = (Evenement)ListeB.SelectedItem;
 
-            eve.annulerParticipation(a.CurrentUser.Adherent);
-
+            if (eve != null)
+            {
+                eve.annulerParticipation(a.CurrentUser.Adherent);
+            }
         }
 
         private void Filtre_Click(object sender, RoutedEventArgs e)
         {
-            /*CollectionViewSource view = (UCAcceuil.Resources["Collec"] as CollectionViewSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(LesEvents);
             switch (comboBox.Text)
             {
-                case "Type": Reset_Click(sender, e); view.GroupDescriptions.Add(new PropertyGroupDescription("Type")); view.SortDescriptions.Add(new SortDescription("Type", ListSortDirection.Ascending)); view.SortDescriptions.Add(new SortDescription("Type", ListSortDirection.Ascending)); break;
-                case "Nom": Reset_Click(sender, e); view.SortDescriptions.Add(new SortDescription("Nom", ListSortDirection.Ascending)); break;
+                case "Type":
+                    Reset_Click(sender, e);
+                    view.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
+                    view.SortDescriptions.Add(new SortDescription("Type", ListSortDirection.Ascending));
+                    break;
+                case "Nom":
+                    Reset_Click(sender, e);
+                    view.SortDescriptions.Add(new SortDescription("Titre", ListSortDirection.Ascending));
+                    break;
                 default: break;
-            }*/
+            }
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            /*CollectionViewSource view = (UCAcceuil.Resources["Collec"] as CollectionViewSource);
+            ICollectionView view = CollectionViewSource.GetDefaultView(LesEvents);
             view.GroupDescriptions.Clear();
-            view.SortDescriptions.Clear();*/
+            view.SortDescriptions.Clear();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

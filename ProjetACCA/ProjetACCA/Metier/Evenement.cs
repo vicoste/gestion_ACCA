@@ -33,6 +33,20 @@ namespace Projet_tut_ACCA.Metier
             set { dateEvent = value;  OnPropertyChanged("DateEvent"); }
         }
 
+        private string heureDebut;
+        public string HeureDebut
+        {
+            get { return heureDebut; }
+            set { heureDebut = value; OnPropertyChanged("HeureDebut"); }
+        }
+
+        private string heureFin;
+        public string HeureFin
+        {
+            get { return heureFin; }
+            set { heureFin = value; OnPropertyChanged("HeureFin"); }
+        }
+
         private string type;
         public string Type
         {
@@ -57,7 +71,7 @@ namespace Projet_tut_ACCA.Metier
         public bool IsNew { get; set; }
         public bool IsModified { get; set; }
 
-        public Evenement (int idEvenement, string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants)
+        public Evenement (int idEvenement, string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string hD, string hF = null)
         {
             this.idEvenement = idEvenement;
             this.titre = titre;
@@ -65,6 +79,8 @@ namespace Projet_tut_ACCA.Metier
             this.type = type;
             this.description = description;
             this.participants = participants;
+            heureDebut = hD;
+            heureFin = hF;
         }
 
         private static ObservableCollection<Adherent> recupParticipants(int idEvent)
@@ -113,7 +129,9 @@ namespace Projet_tut_ACCA.Metier
                             (DateTime)reader["DateEvent"],
                             (string)reader["Type"],
                             (string)reader["Description"],
-                            participants = recupParticipants((int)reader["Id"])
+                            participants = recupParticipants((int)reader["Id"]),
+                            (string)reader["HeureDebut"],
+                            (string)reader["HeureFin"]
                             );
                     evenements.Add(e);
                 }
@@ -202,8 +220,6 @@ namespace Projet_tut_ACCA.Metier
             }
         }
 
-
-
         protected void OnPropertyChanged(string v)
          {
             if (PropertyChanged != null)
@@ -231,6 +247,7 @@ namespace Projet_tut_ACCA.Metier
             sqlCommandTRAd.ExecuteNonQuery();
 
             connection.Close();
+            
             Participants.Add(adherent);
         }
 
@@ -250,7 +267,9 @@ namespace Projet_tut_ACCA.Metier
             sqlCommandTRAd.ExecuteNonQuery();
 
             connection.Close();
-            Participants.Remove(adherent);
+
+            Adherent aR = Participants.First(ad => ad.IdAdherent == adherent.IdAdherent);
+            Participants.Remove(aR);
         }
     }
 }
