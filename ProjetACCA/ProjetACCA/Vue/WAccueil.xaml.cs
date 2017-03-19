@@ -24,14 +24,23 @@ namespace Projet_tut_ACCA.Vue
         private Metier.Application app;
         private Fonctionnaire currentUser;
         public Fonctionnaire CurrentUser { get { return currentUser; } }
+        public ObservableCollection<string> listeFct;
 
         private void changeVisibility()
         {
             ObservableCollection<string> l = currentUser.Fonction.Fonctions;
             for (int i = 0; i < l.Count; i++)
             {
+                
+                
                 listFonction.Items.Add(l[i]);
             }
+            ResourceDictionary mystyles = new ResourceDictionary();
+
+            mystyles.Source = new Uri("/Vue/Dictionar_listBox1.xaml",
+                    UriKind.RelativeOrAbsolute);
+
+            listFonction.ItemContainerStyle = mystyles["ThemeListBox"] as Style;
         }
 
         public void loadUC(UserControl uc)
@@ -53,10 +62,13 @@ namespace Projet_tut_ACCA.Vue
         public WAccueil(Metier.Application a, Fonctionnaire f)
         {
             InitializeComponent();
+            
             app = a;
             currentUser = f;
+            listeFct = currentUser.Fonction.Fonctions;
+
             this.DataContext = this;
-            changeVisibility();
+            //changeVisibility();
 
             loadUC(new UCAccueil(this, app.ListEvents));
         }

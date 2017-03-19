@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\
+C:\Users\Merle Laure\Documents\Virgile_le_Cherie\ACCA\gestion-acca\ProjetACCA\ProjetACCA\obj\Debug\
 ProjetACCA
 none
 false
 DEBUG;TRACE
-C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\App.xaml
-121175739615
+C:\Users\Merle Laure\Documents\Virgile_le_Cherie\ACCA\gestion-acca\ProjetACCA\ProjetACCA\App.xaml
+13394026354
 
 3232332495
 151320802719
-Vue\UCAccueil.xaml;Vue\UCPosteChasse.xaml;Vue\UCPlanChasse.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WGestionBague.xaml;Vue\WAjoutAnimal.xaml;Vue\WAjoutMembre.xaml;Vue\WConnexion.xaml;
+Vue\Dictionar_listBox1.xaml;Vue\UCAccueil.xaml;Vue\UCPosteChasse.xaml;Vue\UCPlanChasse.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WGestionBague.xaml;Vue\WAjoutAnimal.xaml;Vue\WAjoutMembre.xaml;Vue\WConnexion.xaml;
 
 False
 
