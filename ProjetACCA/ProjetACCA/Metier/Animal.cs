@@ -13,6 +13,13 @@ namespace Projet_tut_ACCA.Metier
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        private string idAnimal;
+        public string IdAnimal
+        {
+            get { return idAnimal; }
+            set { idAnimal = value; OnPropertyChanged("IdAnimal"); }
+        }
+
         private string type;
         public string Type
         {
@@ -126,17 +133,17 @@ namespace Projet_tut_ACCA.Metier
                     connection.Close();
                 }
                 // SI C'EST NECESSAIRE JE LE MODIFIERAI ----CLTOURESSE----
-                /* 
-                if (a.IsModified)
+                
+                /*if (a.IsModified) FAIL MODIF NE PAS EN TENIR COMPTE
                 {
-                    //---------UPDATE TAderent---------
+                    //---------UPDATE TAnimal---------
                     connection.Open();
 
-                    string commandUTAd = "UPDATE TAdherent SET Nom = @Nom, Prenom = @Prenom, Statut = @Statut, Adresse = @Adresse, Telephone = @Telephone, Mail = @Mail WHERE Matricule = @Matricule";
+                    string commandUTAd = "UPDATE TAnimal SET DatePrelevement = @DatePrelevement, Sexe = @Sexe, Masse = @Masse WHERE IdAnimal = @IdAnimal";
 
                     SqlCommand sqlCommandUTAd = new SqlCommand(commandUTAd, connection);
 
-                    sqlCommandUTAd.Parameters.AddWithValue("@Matricule", f.Adherent.IdAdherent);
+                    sqlCommandUTAd.Parameters.AddWithValue("@IdAnimal", a.IdAnimal);
                     sqlCommandUTAd.Parameters.AddWithValue("@Nom", f.Adherent.Nom);
                     sqlCommandUTAd.Parameters.AddWithValue("@Prenom", f.Adherent.Prenom);
                     sqlCommandUTAd.Parameters.AddWithValue("@Statut", f.Adherent.Statut);

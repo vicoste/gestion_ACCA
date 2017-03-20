@@ -37,16 +37,18 @@ namespace Projet_tut_ACCA.Vue
             WAjoutAnimal a = new WAjoutAnimal(pc.Autorisations, pc.LesAnimaux, poc.Zones);
             if (a.ShowDialog() == true)
             {
-                //ajouter à la liste des animaux pc.lesAnimaux (rajouter metier) depuis a.newA
                 LesAnimaux.Add(a.newA);
             }
-            else gridAnimaux.Items.Refresh();               
+            else gridAnimaux.Items.Refresh();
         }
 
         private void gestionBague(object sender, RoutedEventArgs e)
         {
             WGestionBague gb = new WGestionBague(pc.Autorisations);
-            gb.ShowDialog();
+            if(gb.ShowDialog() == true)
+            {
+                Autorisation.addAutorisationBDD(gb.autorisations);
+            }
         }
     }
 }

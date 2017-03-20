@@ -27,6 +27,7 @@
                 <DataGridTextColumn Header="Téléphone" Binding="{Binding Adherent.Tel, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="e-Mail" Binding="{Binding Adherent.Mail, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Date de Debut" Binding="{Binding DateDebut, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridComboBoxColumn x:Name="comboFonction" Header="Changer de Fonction" SelectedItemBinding="{Binding Fonction.Role, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTemplateColumn Header="Operations">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

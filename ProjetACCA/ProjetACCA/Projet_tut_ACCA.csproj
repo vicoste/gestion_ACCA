@@ -87,6 +87,9 @@
     <Compile Include="Metier\Registre.cs" />
     <Compile Include="Metier\ESocietaire.cs" />
     <Compile Include="Metier\Zone.cs" />
+    <Compile Include="Vue\WAjoutEvent.xaml.cs">
+      <DependentUpon>WAjoutEvent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vue\UCAccueil.xaml.cs">
       <DependentUpon>UCAccueil.xaml</DependentUpon>
     </Compile>
@@ -105,9 +108,13 @@
     <Compile Include="Vue\UCListeAdherent.xaml.cs">
       <DependentUpon>UCListeAdherent.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vue\Dictionar_listBox1.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Vue\WAjoutEvent.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vue\Dictionar_listBox1.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vue\UCAccueil.xaml">
       <SubType>Designer</SubType>

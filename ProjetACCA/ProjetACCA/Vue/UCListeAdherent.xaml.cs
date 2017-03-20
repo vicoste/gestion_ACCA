@@ -27,6 +27,7 @@ namespace Projet_tut_ACCA.Vue
             this.DataContext = this;
             InitializeComponent();
             comboSocietaire.ItemsSource = new ObservableCollection<string>(Enum.GetNames(typeof(ESocietaire)));
+            comboFonction.ItemsSource = new ObservableCollection<string>(Enum.GetNames(typeof(EFonction)));
         }
         
         private void button_ajout_Click(object sender, RoutedEventArgs e)
@@ -38,7 +39,7 @@ namespace Projet_tut_ACCA.Vue
         private void supprAdherent(object sender, RoutedEventArgs e)
         {
             Fonctionnaire f = (Fonctionnaire) tabAdherent.SelectedItem;
-            Console.WriteLine(f.Adherent.Nom);
+            //Console.WriteLine(f.Adherent.Nom);
             //TODO -- Suppression BDD ? Ou juste une modification pour plus qu'il ne n'affiche
         }
 

@@ -70,7 +70,7 @@ namespace Projet_tut_ACCA.Vue
             this.DataContext = this;
             //changeVisibility();
 
-            loadUC(new UCAccueil(this, app.ListEvents));
+            loadUC(new UCAccueil(this, app.ListEvents, currentUser.Fonction.Role.Equals("President") ? true : false));
         }
 
         private void listeClick(object sender, MouseButtonEventArgs e)
@@ -79,7 +79,7 @@ namespace Projet_tut_ACCA.Vue
             switch (s)
             {
                 case "Accueil":
-                    loadUC(new UCAccueil(this, app.ListEvents));
+                    loadUC(new UCAccueil(this, app.ListEvents, currentUser.Fonction.Role.Equals("President") ? true : false));
                     break;
                 case "Les Adhérents":
                     loadUC(new UCListeAdherent(app.ListFonctionnaires));

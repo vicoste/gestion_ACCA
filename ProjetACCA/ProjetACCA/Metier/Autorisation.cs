@@ -62,6 +62,24 @@ namespace Projet_tut_ACCA.Metier
             return autorisations;
         }
 
+        public static void addAutorisationBDD(ObservableCollection<Autorisation> autorisations)
+        {
+            SqlConnection connection = Application.getInstance();
+            foreach (Autorisation a in autorisations)
+            { 
+                connection.Open();
+                SqlCommand sqlCommand = new SqlCommand("INSERT INTO TAutorisation (Type,Nombre,DateAutorisation,PremiereBague) VALUES (@Type, @Nombre, @Date, @PreB)", connection);
+                sqlCommand.Parameters.AddWithValue("@Type", a.Key);
+                sqlCommand.Parameters.AddWithValue("@Nombre", a.Value);
+                sqlCommand.Parameters.AddWithValue("@Date", DateTime.Today);
+                sqlCommand.Parameters.AddWithValue("@PreB", a.PremiereBague);
+
+                sqlCommand.ExecuteNonQuery();
+
+                connection.Close();
+            }
+        }
+
         private void OnPropertyChanged(string v)
         {
             if (PropertyChanged != null)

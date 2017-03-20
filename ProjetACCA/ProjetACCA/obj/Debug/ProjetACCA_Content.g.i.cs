@@ -8,7 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dbacca.mdf")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("dbacca_log.ldf")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/sanglier_connexion.jpg")]
 
 

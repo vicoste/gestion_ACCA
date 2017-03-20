@@ -45,8 +45,6 @@ namespace Projet_tut_ACCA.Metier
 
         public Application()
         {
-            //instance = getInstance();
-
             listFonctionnaires = new ObservableCollection<Fonctionnaire>();
             listFonctionnaires = Fonctionnaire.demandeInfos();
 
@@ -77,6 +75,10 @@ namespace Projet_tut_ACCA.Metier
         public void deconnexion()
         {
             Fonctionnaire.ajouterFonctionnaireBDD(ListFonctionnaires);
+            Animal.ajoutAnimalBDD(planDeChasse.LesAnimaux);
+            Zone.ajoutZoneBDD(posteDeChasse.Zones);
+            //Evenement.ajouterEvenementBDD(listEvents);
+
             instance.Close();
             instance = null;
         }

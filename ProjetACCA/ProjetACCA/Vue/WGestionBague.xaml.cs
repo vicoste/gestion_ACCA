@@ -22,18 +22,25 @@ namespace Projet_tut_ACCA.Vue
     public partial class WGestionBague : Window
     {
         public ObservableCollection<Autorisation> autorisations { get; set; }
-        public Animal newA;
 
         public WGestionBague(ObservableCollection<Autorisation> a)
         {
             this.DataContext = this;
-            autorisations = a;
+            autorisations = new ObservableCollection<Autorisation>();
+            foreach (Autorisation aut in a)
+                autorisations.Add(new Autorisation(aut.Key, 0, 0));
+
             InitializeComponent();
         }
 
         private void button_valider_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            DialogResult = true;
+        }
+
+        private void button_annuler_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
         }
     }
 }

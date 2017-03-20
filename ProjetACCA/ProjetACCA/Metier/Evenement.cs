@@ -140,7 +140,49 @@ namespace Projet_tut_ACCA.Metier
             return evenements;
         }
 
-        public static void ajouterEvenementBDD(ObservableCollection<Evenement> le)
+        public void ajouterEvenementBDD()
+        {
+            SqlConnection connection = Application.getInstance();
+
+            //---------INSERT INTO TEvenement---------
+
+            connection.Open();
+
+            string commandTAd = "INSERT INTO TEvenement (Titre, DateEvent, HeureDebut, HeureFin, Type, Description) VALUES ("
+                + "@Titre, @DateEvent, @HeureDebut, @HeureFin, @Type, @Description)";
+
+            SqlCommand sqlCommandTAd = new SqlCommand(commandTAd, connection);
+
+            sqlCommandTAd.Parameters.AddWithValue("@Titre", Titre);
+            sqlCommandTAd.Parameters.AddWithValue("@DateEvent", DateEvent);
+            sqlCommandTAd.Parameters.AddWithValue("@HeureDebut", HeureDebut);
+            sqlCommandTAd.Parameters.AddWithValue("@HeureFin", HeureFin);
+            sqlCommandTAd.Parameters.AddWithValue("@Type", Type);
+            sqlCommandTAd.Parameters.AddWithValue("@Description", Description);
+
+            sqlCommandTAd.ExecuteNonQuery();
+
+            connection.Close();
+
+            //---------SELECT Id FROM TEvenement---------
+            connection.Open();
+
+            string commandS = "SELECT Id FROM TEvenement WHERE Titre = @Titre AND DateEvent = @DateEvent";
+            SqlCommand sqlCommandS = new SqlCommand(commandS, connection);
+
+            sqlCommandS.Parameters.AddWithValue("@Titre", Titre);
+            sqlCommandS.Parameters.AddWithValue("@DateEvent", DateEvent);
+
+            SqlDataReader reader = sqlCommandS.ExecuteReader();
+            if (reader.Read())
+                IdEvenement = (int)reader["Id"];
+            else
+                return;
+
+            connection.Close();
+        }
+
+        /*public static void ajouterEvenementBDD(ObservableCollection<Evenement> le)
         {
             SqlConnection connection = Application.getInstance();
 
@@ -148,19 +190,20 @@ namespace Projet_tut_ACCA.Metier
             {
                 if (e.IsNew)
                 {
-
                     //---------INSERT INTO TEvenement---------
                     // Cette partie sera probablement optionnelle dans le cas présent, et sera utilisé lors de l'ajout d'un participant
-                    /*
+                    
                     connection.Open();
 
-                    string commandTAd = "INSERT INTO TEvenement (Titre, DateEvent, Type, Description) VALUES ("
-                        + "@Titre, @DateEvent, @Type, @Description)";
+                    string commandTAd = "INSERT INTO TEvenement (Titre, DateEvent, HeureDebut, HeureFin, Type, Description) VALUES ("
+                        + "@Titre, @DateEvent, @HeureDebut, @HeureFin, @Type, @Description)";
 
                     SqlCommand sqlCommandTAd = new SqlCommand(commandTAd, connection);
 
                     sqlCommandTAd.Parameters.AddWithValue("@Titre", e.Titre);
                     sqlCommandTAd.Parameters.AddWithValue("@DateEvent", e.DateEvent);
+                    sqlCommandTAd.Parameters.AddWithValue("@HeureDebut", e.HeureDebut);
+                    sqlCommandTAd.Parameters.AddWithValue("@HeureFin", e.HeureFin);
                     sqlCommandTAd.Parameters.AddWithValue("@Type", e.Type);
                     sqlCommandTAd.Parameters.AddWithValue("@Description", e.Description);
 
@@ -171,9 +214,14 @@ namespace Projet_tut_ACCA.Metier
                     //---------SELECT Id FROM TEvenement---------
                     connection.Open();
 
+                    int noEvenement;
+
                     string commandS = "SELECT Id FROM TEvenement WHERE Titre = @Titre AND DateEvent = @DateEvent";
                     SqlCommand sqlCommandS = new SqlCommand(commandS, connection);
+
                     sqlCommandS.Parameters.AddWithValue("@Titre", e.Titre);
+                    sqlCommandS.Parameters.AddWithValue("@DateEvent", e.DateEvent);
+
                     SqlDataReader reader = sqlCommandS.ExecuteReader();
                     if (reader.Read())
                         noEvenement = (int)reader["Id"];
@@ -184,20 +232,23 @@ namespace Projet_tut_ACCA.Metier
 
                     //---------INSERT INTO TEvenementAdherent---------
                     // Cette partie sera probablement optionnelle dans le cas présent, et sera utilisé lors de l'ajout d'un participant
-                    /*
+                    
                     connection.Open();
 
-                    string commandTRAd = "INSERT INTO TEvenementAdherent (MatriculeAdherent,IdEvenement) VALUES ("
-                        + "@MatriculeAdherent, @IdEvenement)";
+                    foreach (Adherent a in e.Participants)
+                    {
+                        string commandTRAd = "INSERT INTO TEvenementAdherent (MatriculeAdherent,IdEvenement) VALUES ("
+                            + "@MatriculeAdherent, @IdEvenement)";
 
-                    SqlCommand sqlCommandTRAd = new SqlCommand(commandTRAd, connection);
+                        SqlCommand sqlCommandTRAd = new SqlCommand(commandTRAd, connection);
 
-                    sqlCommandTRAd.Parameters.AddWithValue("@MatriculeAdherent", matricule);
-                    sqlCommandTRAd.Parameters.AddWithValue("@RoleAdherent", noEvenement);
+                        sqlCommandTRAd.Parameters.AddWithValue("@MatriculeAdherent", a.IdAdherent);
+                        sqlCommandTRAd.Parameters.AddWithValue("@IdEvenement", noEvenement);
 
-                    sqlCommandTRAd.ExecuteNonQuery();
+                        sqlCommandTRAd.ExecuteNonQuery();
+                    }
 
-                    connection.Close();*/
+                    connection.Close();
                 }
                 if (e.IsModified)
                 {
@@ -218,7 +269,7 @@ namespace Projet_tut_ACCA.Metier
                     connection.Close();
                 }
             }
-        }
+        }*/
 
         protected void OnPropertyChanged(string v)
          {
@@ -233,7 +284,6 @@ namespace Projet_tut_ACCA.Metier
             SqlConnection connection = Application.getInstance();
 
             //---------INSERT INTO TEvenementAdherent---------
-            // Cette partie sera probablement optionnelle dans le cas présent, et sera utilisé lors de l'ajout d'un participant
             connection.Open();
 
             string commandTRAd = "INSERT INTO TEvenementAdherent (MatriculeAdherent,IdEvenement) VALUES ("
@@ -254,6 +304,7 @@ namespace Projet_tut_ACCA.Metier
         public void annulerParticipation(Adherent adherent)
         {
             SqlConnection connection = Application.getInstance();
+
             //---------DELETE FROM TEvenementAdherent---------
             connection.Open();
 

@@ -83,16 +83,15 @@ namespace Projet_tut_ACCA.Metier
                     //---------UPDATE TPoste---------
                     connection.Open();
 
-                    string commandUTAd = "UPDATE TPoste SET IdPoste = @IdPoste, Libelle = @Libelle, Gps = @Gps, Observations = @Observations, IdZone = @IdZone"
+                    string commandUTAd = "UPDATE TPoste SET Libelle = @Libelle, Gps = @Gps, Observations = @Observations"
                         + " WHERE IdPoste = @IdPoste";
 
                     SqlCommand sqlCommandUTAd = new SqlCommand(commandUTAd, connection);
 
+                    sqlCommandUTAd.Parameters.AddWithValue("@Libelle", p.Libelle);
+                    sqlCommandUTAd.Parameters.AddWithValue("@Gps", p.Gps);
+                    sqlCommandUTAd.Parameters.AddWithValue("@Observations", p.Observation);
                     sqlCommandUTAd.Parameters.AddWithValue("@IdPoste", p.Numero);
-                    sqlCommandUTAd.Parameters.AddWithValue("@IsChassable", p.Libelle);
-                    sqlCommandUTAd.Parameters.AddWithValue("@IdZone", p.Gps);
-                    sqlCommandUTAd.Parameters.AddWithValue("@IdZone", p.Observation);
-                    sqlCommandUTAd.Parameters.AddWithValue("@IdZone", idZone);
 
                     sqlCommandUTAd.ExecuteNonQuery();
 

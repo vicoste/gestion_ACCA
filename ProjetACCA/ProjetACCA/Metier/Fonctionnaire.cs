@@ -134,6 +134,55 @@ namespace Projet_tut_ACCA.Metier
                     sqlCommandUTAd.ExecuteNonQuery();
 
                     connection.Close();
+
+                    //---------UPDATE TRoleAdherent---------
+                    connection.Open();
+
+                    string exFonction;
+
+                    string commandSRA = "SELECT RoleAdherent FROM TRoleAdherent WHERE MatriculeAdherent = @MatriculeAdherent";
+                    SqlCommand sqlCommandSRA = new SqlCommand(commandSRA, connection);
+                    sqlCommandSRA.Parameters.AddWithValue("@MatriculeAdherent", f.Adherent.IdAdherent);
+                    SqlDataReader reader = sqlCommandSRA.ExecuteReader();
+                    if (reader.Read())
+                        exFonction = (string)reader["RoleAdherent"];
+                    else
+                        return;
+
+                    connection.Close();
+
+                    if(!f.Fonction.Role.Equals(exFonction))
+                    {
+                        //---------UPDATE TRoleAdherent SET DateFin---------
+                        connection.Open();
+
+                        string commandUTRAd = "UPDATE TRoleAdherent SET DateFin = @DateFinU WHERE MatriculeAdherent = @MatriculeU";
+
+                        SqlCommand sqlCommandUTRAd = new SqlCommand(commandUTRAd, connection);
+
+                        sqlCommandUTRAd.Parameters.AddWithValue("@MatriculeU", f.Adherent.IdAdherent);
+                        sqlCommandUTRAd.Parameters.AddWithValue("@DateFinU", DateTime.Today);
+
+                        sqlCommandUTRAd.ExecuteNonQuery();
+
+                        connection.Close();
+
+                        //---------INSERT INTO TRoleAdherent---------
+                        connection.Open();
+
+                        string commandIRAd = "INSERT INTO TRoleAdherent (MatriculeAdherent, RoleAdherent, DateDebut, DateFin) VALUES("
+                        + "@MatriculeAdherentI, @RoleAdherentI, @DateDebutI, NULL)";
+
+                        SqlCommand sqlCommandIRAd = new SqlCommand(commandIRAd, connection);
+
+                        sqlCommandIRAd.Parameters.AddWithValue("@MatriculeAdherentI", f.Adherent.IdAdherent);
+                        sqlCommandIRAd.Parameters.AddWithValue("@RoleAdherentI", f.Fonction.Role);
+                        sqlCommandIRAd.Parameters.AddWithValue("@DateDebutI", DateTime.Today);
+
+                        sqlCommandIRAd.ExecuteNonQuery();
+
+                        connection.Close();
+                    }
                 }
             }
         }
@@ -144,7 +193,7 @@ namespace Projet_tut_ACCA.Metier
             using (SqlConnection connection = Application.getInstance())
             {
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM TAdherent a, TRoleAdherent ra WHERE a.Matricule = ra.MatriculeAdherent", connection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM TAdherent a, TRoleAdherent ra WHERE a.Matricule = ra.MatriculeAdherent AND DateFin IS NULL ", connection);
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -160,8 +209,8 @@ namespace Projet_tut_ACCA.Metier
                             (string)reader["Telephone"],
                             (string)reader["Mail"],
                             (DateTime)reader["DateAdhesion"]),
-                           new Fonction((string)reader["RoleAdherent"]),
-                           (DateTime)reader["DateDebut"]);
+                            new Fonction((string)reader["RoleAdherent"]),
+                            (DateTime)reader["DateDebut"]);
                     fonctionnaires.Add(f);
                 }
                 connection.Close();

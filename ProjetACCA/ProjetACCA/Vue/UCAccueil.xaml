@@ -54,7 +54,7 @@
                 </Button>
                 <TextBox x:Name="tex" Visibility="Hidden"  Margin="80,0,0,0" Height="30"  Width="155" HorizontalAlignment="Left" VerticalAlignment="Center"/>
 
-                <Button Content="Nouvel Évènement"  Margin="300,0,155,0" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="70" BorderBrush="#199D33" />
+                <Button x:Name="buttonAddEvent" Content="Nouvel Évènement"  Margin="300,0,155,0" Background="White" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="70" BorderBrush="#199D33" Click="buttonAddEvent_Click"/>
                 <Button x:Name="suivant" Click="Suivant_Click" Margin="0,0,50,0" Background="White" BorderBrush="White" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <Button.ToolTip>Suivant</Button.ToolTip>
                     <Image Source="/Image/arrow_next_go_forward-128.png"  Height="41" Width="40"/>
@@ -109,6 +109,7 @@
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
                             <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="20*"/>
@@ -123,18 +124,22 @@
 
                         </Grid.Resources>
 
-                        <ListBox x:Name="listParticipant" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Participants, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="80" Grid.Row="5" Grid.ColumnSpan="2" />
+                        <TextBlock Text="Titre :" />
+                        <TextBox Text="{Binding Titre, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="3" />
 
-                        <TextBlock Text="Heure de début "/>
-                        <TextBlock Text="Heure de fin : " Grid.Row="1"/>
-                        <TextBlock Text="description" Grid.Row="2"/>
-                        <TextBlock Text="Type : " Grid.Row="3"/>
-                        <TextBlock Text="Description : " Grid.Row="4" VerticalAlignment="Top" Margin="0,10,0,0"/>
-                        <TextBox Text="{Binding HeureDebut, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="3" />
-                        <TextBox Text="{Binding HeureFin, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1"  Grid.ColumnSpan="3" />
-                        <TextBox Text="{Binding DateEvent, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="3" />
-                        <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3" />
-                        <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged }" Width="400" Height="100" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1"  Grid.ColumnSpan="3" TextWrapping="Wrap"/>
+                        <TextBlock Text="Heure de début :" Grid.Row="1"/>
+                        <TextBlock Text="Heure de fin : " Grid.Row="2"/>
+                        <TextBlock Text="description" Grid.Row="3"/>
+                        <TextBlock Text="Type : " Grid.Row="4"/>
+                        <TextBlock Text="Description : " Grid.Row="5" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                        <TextBox Text="{Binding HeureDebut, UpdateSourceTrigger=PropertyChanged}" Width="200" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1"/>
+                        <TextBox Text="{Binding HeureFin, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="2" Grid.Column="1"  Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding DateEvent, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="1"  Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding Type, UpdateSourceTrigger=PropertyChanged }" Width="200" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" />
+                        <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged }" Width="400" Height="100" HorizontalAlignment="Left" Grid.Row="5" Grid.Column="1"  Grid.ColumnSpan="3" TextWrapping="Wrap"/>
+
+                        <TextBlock Text="Participant(s)" Grid.Row="6"/>
+                        <ListBox x:Name="listParticipant" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Participants, UpdateSourceTrigger=PropertyChanged}" ScrollViewer.VerticalScrollBarVisibility="Visible" Height="80" Grid.Row="6" Grid.ColumnSpan="2" />
                     </Grid>
                 </Border>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Orientation="Horizontal">

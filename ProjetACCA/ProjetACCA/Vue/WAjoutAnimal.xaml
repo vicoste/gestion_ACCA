@@ -15,6 +15,7 @@
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
@@ -23,17 +24,18 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Content="Type" HorizontalAlignment="Center"  VerticalAlignment="Center" />
-        <Label Grid.Row="1" Content="Sexe" HorizontalAlignment="Center"  VerticalAlignment="Center" />
-        <Label Grid.Row="2" Content="Date" HorizontalAlignment="Center"  VerticalAlignment="Center" />
-        <Label Grid.Row="3" Content="Masse" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Grid.Row="4" Content="Zone/Poste" HorizontalAlignment="Center" VerticalAlignment="Center" />
-        <Label Grid.Row="5" Content="Observation" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+        <Label Grid.Row="1" Content="Numéro Bague" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+        <Label Grid.Row="2" Content="Sexe" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+        <Label Grid.Row="3" Content="Date" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+        <Label Grid.Row="4" Content="Masse" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Grid.Row="5" Content="Zone/Poste" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Label Grid.Row="6" Content="Observation" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
 
-        <Button x:Name="button_valider" Grid.Column="1" Grid.Row="6" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Click="button_valider_Click" Grid.RowSpan="2"/>
-        <Button x:Name="button_annuler" Grid.Column="0" Grid.Row="6" Content="Annuler" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Grid.RowSpan="2" Click="button_annuler_Click" />
+        <Button x:Name="button_valider" Grid.Column="1" Grid.Row="7" Content="Valider" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Click="button_valider_Click" Grid.RowSpan="2"/>
+        <Button x:Name="button_annuler" Grid.Column="0" Grid.Row="7" Content="Annuler" HorizontalAlignment="Center" VerticalAlignment="Center" Width="74" Grid.RowSpan="2" Click="button_annuler_Click" />
 
         <StackPanel Grid.Column="1" VerticalAlignment="Center">
-            <ComboBox x:Name="comboBoxType" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedItem="Nouveau Type"  Margin="0,0,0,10"/>
+            <ComboBox x:Name="comboBoxType" HorizontalAlignment="Center" VerticalAlignment="Center" SelectedItem="Nouveau Type" Margin="0,0,0,10" />
             <TextBox x:Name="textBoxDefType">
                 <TextBox.Style>
                     <Style>
@@ -48,16 +50,29 @@
                 </TextBox.Style>
             </TextBox>
         </StackPanel>
-        <WrapPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+        <TextBox x:Name="boxBague" Grid.Row="1" Grid.Column="1" Height="20" Width="150">
+            <TextBox.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger
+                             Binding="{Binding ElementName=comboBoxType, Path=SelectedValue}" Value="Nouveau Type">
+                            <Setter Property="TextBox.Text" Value="-1" />
+                            <Setter Property="TextBox.Focusable" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <WrapPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
             <RadioButton x:Name="rbSexeM" Content="Mâle" HorizontalAlignment="Left" IsChecked="True"/>
             <RadioButton x:Name="rbSexeF" Content="Femelle" Margin="20,0,0,0" HorizontalAlignment="Right"/>
         </WrapPanel>
-        <DatePicker x:Name="datePick"  Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Selectioner Une date"/>
-        <TextBox x:Name="textBoxMasse" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120"/>
+        <DatePicker x:Name="datePick"  Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Selectioner Une date"/>
+        <TextBox x:Name="textBoxMasse" Grid.Row="4" Grid.Column="1" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="120" />
 
-        <ComboBox x:Name="comboBoxZone" Grid.Row="4" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0" Width="150" IsSynchronizedWithCurrentItem="True"/>
-        <ComboBox x:Name="comboBoxPoste" Grid.Row="4" Grid.Column="1" VerticalAlignment="Bottom" SelectedIndex="0" Width="150" ItemsSource="{Binding ElementName=comboBoxZone, Path=SelectedItem.ListPoste}" />
+        <ComboBox x:Name="comboBoxZone" Grid.Row="5" Grid.Column="1" VerticalAlignment="Top" SelectedIndex="0" Width="150" IsSynchronizedWithCurrentItem="True"/>
+        <ComboBox x:Name="comboBoxPoste" Grid.Row="5" Grid.Column="1" VerticalAlignment="Bottom" SelectedIndex="0" Width="150" ItemsSource="{Binding ElementName=comboBoxZone, Path=SelectedItem.ListPoste}" />
 
-        <TextBox x:Name="textBoxObs" Grid.Row="5" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="350" Height="100"/>
+        <TextBox x:Name="textBoxObs" Grid.Row="6" Grid.ColumnSpan="2" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="350" Height="100"/>
     </Grid>
 </Window>

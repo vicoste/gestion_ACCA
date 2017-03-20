@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
 using Projet_tut_ACCA.Metier;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
@@ -18,13 +24,15 @@ namespace Projet_tut_ACCA.Vue
         private WAccueil a;
         public ObservableCollection<Evenement> LesEvents { get; set; }
 
-        public UCAccueil(WAccueil a, ObservableCollection<Evenement> l)
+        public UCAccueil(WAccueil a, ObservableCollection<Evenement> l, bool isPresident)
         {
             this.DataContext = this;
             this.a = a;
             LesEvents = l;
+
             InitializeComponent();
 
+            buttonAddEvent.Visibility = isPresident ? Visibility.Visible : Visibility.Hidden;
             ListeB.ItemsSource = LesEvents;     
         }
 
@@ -107,6 +115,12 @@ namespace Projet_tut_ACCA.Vue
             ICollectionView view = CollectionViewSource.GetDefaultView(LesEvents);
             view.GroupDescriptions.Clear();
             view.SortDescriptions.Clear();
+        }
+
+        private void buttonAddEvent_Click(object sender, RoutedEventArgs e)
+        {
+            WAjoutEvent w = new WAjoutEvent(LesEvents);
+            w.Show();
         }
     }
 }

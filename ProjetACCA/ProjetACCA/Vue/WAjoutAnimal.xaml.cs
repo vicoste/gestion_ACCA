@@ -44,7 +44,7 @@ namespace Projet_tut_ACCA.Vue
             if (type.Equals("Nouveau Type"))
             {
                 type = textBoxDefType.Text;
-                //autorisations.Add(new Autorisation(type, -1));
+                autorisations.Add(new Autorisation(type, -1, 0));
             }
 
             if (type.Equals("")) { MessageBox.Show("Erreur : le nouveau type est vide !"); return; }
@@ -65,12 +65,21 @@ namespace Projet_tut_ACCA.Vue
             if (datePick.SelectedDate != null)
                 datePrelev = (DateTime)datePick.SelectedDate;
             else
-            { MessageBox.Show("Erreur : la date est vide !"); return; }
+            {
+                MessageBox.Show("Erreur : la date est vide !"); return;
+            }
 
-            int numBague = getBague(type);
-            if (numBague == -1)
+            int numBague, tBague;
+            bool rParse;
+            rParse = Int32.TryParse(boxBague.Text.ToString(), out numBague);
+            tBague = testBague(type, numBague);
+
+            if (rParse == false || tBague == -1 && numBague != -1) { MessageBox.Show("Erreur : le numéro de bague est invalide !"); return; }
+
+            if (tBague == 0)
             {
                 newA = new Animal(type, numBague, datePrelev, sexe, masse, obs, idPoste);
+                newA.IsNew = true;
                 DialogResult = true;
                 return;
             }
@@ -81,6 +90,7 @@ namespace Projet_tut_ACCA.Vue
             a.Observation = obs;
             a.Masse = masse;
             a.IdPoste = idPoste;
+            a.IsNew = true;
 
             DialogResult = false;
         }
@@ -90,23 +100,19 @@ namespace Projet_tut_ACCA.Vue
             DialogResult = false;
         }
 
-        private int getBague(string type)
+        private int testBague(string type, int bague)
         {
-            int value = -1;
-            bool isHere = false;
+            if (autorisations.First(a => a.Key.Equals(type)).Value == -1)
+                return 0;
 
-            foreach (Autorisation a in autorisations)
-                if (a.Key.Equals(type))
-                    isHere = true;
+            if (lesAnimaux.Count(a => a.NumBague == bague) == 0)
+                return -1;
 
-            if (!isHere)
-                autorisations.Add(new Autorisation(type, -1, 0));
+            var l = lesAnimaux.Where(a => a.Type.Equals(type) && a.NumBague == bague);
+            if (l.Count() == 1)
+                return l.ElementAt(0).Observation.Equals("Non rempli") ? 1 : -1;
 
-            Autorisation aut = autorisations.First(a => a.Key.Equals(type));
-            value = aut.Value;
-            if (value == -1) return value;
-
-            return lesAnimaux.First(a => a.Observation.Equals("Non rempli") && a.Type.Equals(type)).NumBague;
+            return 0;
         }
     }
 }

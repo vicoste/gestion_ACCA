@@ -137,6 +137,7 @@ namespace Projet_tut_ACCA.Metier
 
                     connection.Close();
                 }
+                Poste.ajoutPosteBDD(z.ListPoste, z.idZone);
             }
         }        
 
