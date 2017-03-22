@@ -87,11 +87,11 @@
     <Compile Include="Metier\Registre.cs" />
     <Compile Include="Metier\ESocietaire.cs" />
     <Compile Include="Metier\Zone.cs" />
-    <Compile Include="Vue\WAjoutEvent.xaml.cs">
-      <DependentUpon>WAjoutEvent.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vue\UCAccueil.xaml.cs">
       <DependentUpon>UCAccueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\UCCarnetBattue.xaml.cs">
+      <DependentUpon>UCCarnetBattue.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vue\UCPosteChasse.xaml.cs">
       <DependentUpon>UCPosteChasse.xaml</DependentUpon>
@@ -108,15 +108,15 @@
     <Compile Include="Vue\UCListeAdherent.xaml.cs">
       <DependentUpon>UCListeAdherent.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vue\WAjoutEvent.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Vue\Dictionar_listBox1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vue\UCAccueil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vue\UCCarnetBattue.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -148,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vue\WAjoutEvent.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vue\WGestionBague.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -173,6 +177,9 @@
     </Compile>
     <Compile Include="Vue\WAccueil.xaml.cs">
       <DependentUpon>WAccueil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\WAjoutEvent.xaml.cs">
+      <DependentUpon>WAjoutEvent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vue\WGestionBague.xaml.cs">
       <DependentUpon>WGestionBague.xaml</DependentUpon>

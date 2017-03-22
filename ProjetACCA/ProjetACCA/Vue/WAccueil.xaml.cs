@@ -70,7 +70,7 @@ namespace Projet_tut_ACCA.Vue
             this.DataContext = this;
             //changeVisibility();
 
-            loadUC(new UCAccueil(this, app.ListEvents, currentUser.Fonction.Role.Equals("President") ? true : false));
+            loadUC(new UCAccueil( this, app.ListEvents, currentUser.Fonction.Role.Equals("President") || currentUser.Fonction.Role.Equals("Dev") ? true : false, new List<Fonctionnaire>(app.ListFonctionnaires.Where(fo => fo.Fonction.Role.Equals("Chef_de_Battue"))), app.PosteDeChasse.Zones));
         }
 
         private void listeClick(object sender, MouseButtonEventArgs e)
@@ -79,7 +79,7 @@ namespace Projet_tut_ACCA.Vue
             switch (s)
             {
                 case "Accueil":
-                    loadUC(new UCAccueil(this, app.ListEvents, currentUser.Fonction.Role.Equals("President") ? true : false));
+                    loadUC(new UCAccueil(this, app.ListEvents, currentUser.Fonction.Role.Equals("President") || currentUser.Fonction.Role.Equals("Dev") ? true : false, new List<Fonctionnaire>(app.ListFonctionnaires.Where(fo => fo.Fonction.Role.Equals("Chef_de_Battue"))), app.PosteDeChasse.Zones));
                     break;
                 case "Les Adhérents":
                     loadUC(new UCListeAdherent(app.ListFonctionnaires));
@@ -95,6 +95,9 @@ namespace Projet_tut_ACCA.Vue
                     break;
                 case "Les Zones":
                     loadUC(new UCPosteChasse(app.PosteDeChasse.Zones));
+                    break;
+                case "Les Battues":
+                    loadUC(new UCCarnetBattue(new ObservableCollection<Evenement>(app.ListEvents.Where(ev => ev.Type.Equals("Battue")))));
                     break;
             }
         }

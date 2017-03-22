@@ -23,11 +23,15 @@ namespace Projet_tut_ACCA.Vue
         bool rech = true;
         private WAccueil a;
         public ObservableCollection<Evenement> LesEvents { get; set; }
+        private List<Fonctionnaire> chefs;
+        private ObservableCollection<Zone> zones;
 
-        public UCAccueil(WAccueil a, ObservableCollection<Evenement> l, bool isPresident)
+        public UCAccueil(WAccueil a, ObservableCollection<Evenement> l, bool isPresident, List<Fonctionnaire> chefs, ObservableCollection<Zone> zones)
         {
             this.DataContext = this;
             this.a = a;
+            this.chefs = chefs;
+            this.zones = zones;
             LesEvents = l;
 
             InitializeComponent();
@@ -119,8 +123,8 @@ namespace Projet_tut_ACCA.Vue
 
         private void buttonAddEvent_Click(object sender, RoutedEventArgs e)
         {
-            WAjoutEvent w = new WAjoutEvent(LesEvents);
-            w.Show();
+            WAjoutEvent w = new WAjoutEvent(LesEvents, chefs, zones);
+            w.ShowDialog();
         }
     }
 }

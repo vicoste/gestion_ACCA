@@ -10,22 +10,24 @@ namespace Projet_tut_ACCA.Metier
 {
     class CarnetBattue : Evenement
     {
-        /*private string heureD;
-        public string HeureD
+        private Zone zone;
+        public Zone Zone
         {
-            get { return heureD; }
-            set { heureD = value;  OnPropertyChanged("HeureD"); }
+            get { return zone; }
+            set { zone = value; OnPropertyChanged("Zone"); }
+        }
+        private Fonctionnaire chef;
+        public Fonctionnaire Chef
+        {
+            get { return chef; }
+            set { chef = value; OnPropertyChanged("Chef"); }
         }
 
-        private string heureF;
-        public string HeureF
-        {
-            get { return heureF; }
-            set { heureF = value; OnPropertyChanged("HeureF"); }
-        }*/
-
-        public CarnetBattue(string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string heureD, string heureF)
+        public CarnetBattue(string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string heureD, string heureF, Zone z, Fonctionnaire f)
             : base(0,titre,dateEvent,type,description,participants, heureD, heureF)
-        { }
+        {
+            zone = z;
+            chef = f;
+        }
     }
 }

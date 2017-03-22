@@ -219,6 +219,11 @@ namespace Projet_tut_ACCA.Metier
         }
         //Fin code BDD
 
+        public override string ToString()
+        {
+            return Adherent.Nom + " " + Adherent.Prenom;
+        }
+
         private void OnPropertyChanged(string v)
         {
             if (PropertyChanged != null)

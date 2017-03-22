@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
-        Title="Ajout Evenement" MinHeight="330" MaxHeight="330" MinWidth="333" MaxWidth="333">
+        Title="Ajout Evenement" MinHeight="400" MaxHeight="360" MinWidth="333" MaxWidth="333">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="104" />
@@ -16,8 +16,10 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
@@ -38,23 +40,63 @@
 
         <TextBlock Text="Titre :" Height="16"  Width="30" />
         <TextBlock Text="Type :" Grid.Row="1" Height="16" Width="31"/>
-        <TextBlock Text="Date :" Grid.Row="2" Height="16" Width="31"/>
-        <TextBlock Text="Heure Dépard :" Grid.Row="3" Height="16"  Width="80"/>
-        <TextBlock Text="Heure Fin :" Grid.Row="4" Height="16"  Width="65"/>
+        <TextBlock Text="Date :" Grid.Row="3" Height="16" Width="31"/>
+        <TextBlock Text="Heure Dépard :" Grid.Row="4" Height="16"  Width="80"/>
+        <TextBlock Text="Heure Fin :" Grid.Row="5" Height="16"  Width="65"/>
+        <TextBlock Text="Description :" Grid.Row="6" Height="16" Width="71"/>
 
-        <TextBlock Text="Description :" Grid.Row="5" Height="16" Width="71"/>
+        <Grid Grid.Column="1" Grid.Row="2" Margin="5">
+            <Grid.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger
+                             Binding="{Binding ElementName=TypeCB, Path=IsChecked}" Value="False">
+                            <Setter Property="Grid.Visibility" Value="Hidden" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="32*" />
+                <ColumnDefinition Width="68*"/>
+                <ColumnDefinition Width="99*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Chef de Battue :" />
+            <TextBlock Text="Zone :" Grid.Row="1"/>
+
+            <ComboBox x:Name="comboBoxChef" Grid.Column="2" SelectedIndex="0" Height="30"/>
+            <ComboBox x:Name="comboBoxZone" Grid.Column="2" Grid.Row="1" SelectedIndex="0" Height="30" Margin="0,0,0,1"/>
+        </Grid>
 
         <TextBox x:Name="Titre"  Grid.Column="1" Grid.Row="0" Margin="8,8,9,8" Width="Auto" />
-        <TextBox x:Name="Type" Grid.Column="1" Grid.Row="1" Margin="8,8,9,8" Width="Auto" />
-        <TextBox x:Name="HeureD" Grid.Column="1" Grid.Row="3" Margin="6,5,167,5" Width="Auto" />
-        <TextBox x:Name="HeureF" Grid.Column="1" Grid.Row="4" Margin="6,5,167,5" Width="Auto" />
-        <TextBox x:Name="Description" Grid.Column="1" Grid.Row="5" MinHeight="60" TextWrapping="Wrap" Margin="8,8,9,8" Width="Auto" />
+        <TextBox x:Name="Type" Grid.Column="1" Grid.Row="1" Margin="8,8,9,8" Width="130" HorizontalAlignment="Left" BorderBrush="Black">
+            <TextBox.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger
+                             Binding="{Binding ElementName=TypeCB, Path=IsChecked}" Value="True">
+                            <Setter Property="TextBox.Focusable" Value="False" />
+                            <Setter Property="TextBox.Text" Value="Battue" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <CheckBox x:Name="TypeCB" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Content="Battue"/>
+        <TextBox x:Name="HeureD" Grid.Column="1" Grid.Row="4" Margin="6,5,167,5" Width="Auto" />
+        <TextBox x:Name="HeureF" Grid.Column="1" Grid.Row="5" Margin="6,5,167,5" Width="Auto" />
+        <TextBox x:Name="Description" Grid.Column="1" Grid.Row="6" MinHeight="60" TextWrapping="Wrap" Margin="8,8,9,8" Width="Auto" />
 
         <Button Content="Valider" Click="Valider_Click" x:Name="button1"  Grid.Column="1" Grid.Row="8" Margin="43,10,98,8" ></Button>
         <Button Content="Quitter" Click="Quitter_Click" Grid.Column="1" Grid.Row="8" Margin="120,10,21,8" ></Button>
-        <TextBlock Text="Heure" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Left" Margin="43,9,0,8" Height="16" Width="37"  />
         <TextBlock Text="Heure" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left" Margin="43,9,0,8" Height="16" Width="37"  />
-        <DatePicker x:Name="Date" Grid.Column="1"   Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBlock Text="Heure" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Left" Margin="43,9,0,8" Height="16" Width="37"  />
+        <DatePicker x:Name="Date" Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Center"/>
     </Grid>
 
 </Window>

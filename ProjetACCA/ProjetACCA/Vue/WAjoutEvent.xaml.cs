@@ -20,31 +20,43 @@ namespace Projet_tut_ACCA.Vue
     public partial class WAjoutEvent : Window
     {
         private ObservableCollection<Evenement> list;
-        public WAjoutEvent(ObservableCollection<Evenement> l)
+        public WAjoutEvent(ObservableCollection<Evenement> l, List<Fonctionnaire> chefs, ObservableCollection<Zone> zones)
         {
             list = l;
             InitializeComponent();
+
+            comboBoxChef.ItemsSource = chefs;
+            comboBoxZone.ItemsSource = zones;
         }
 
         private void Valider_Click(object sender, RoutedEventArgs e)
         {
-            if (Titre.Text.Equals("") || Type.Text.Equals("") || Date.Text.Equals("") || HeureD.Text.Equals("") || HeureF.Text.Equals(""))
+            if (Titre.Text.Equals("")) { Titre.BorderBrush = Brushes.Red; return; }
+            if (Type.Text.Equals("")) { Type.BorderBrush = Brushes.Red; return; }
+            if (Date.Text.Equals("")) { Date.BorderBrush = Brushes.Red; return; }
+            if (HeureD.Text.Equals("")) { HeureD.BorderBrush = Brushes.Red; return; }
+            if (HeureF.Text.Equals("")) { HeureF.BorderBrush = Brushes.Red; return; }
+            int hD = 0, hF = 0;
+            if(!Int32.TryParse(HeureD.Text, out hD) || !Int32.TryParse(HeureF.Text, out hF) || hD >= hF)
             {
-                MessageBox.Show("Un champ obligatoire est vide");
-                if (Titre.Text.Equals("")) { Titre.BorderBrush = Brushes.Red; }
-                if (Type.Text.Equals("")) { Type.BorderBrush = Brushes.Red; }
-                if (Date.Text.Equals("")) { Date.BorderBrush = Brushes.Red; }
-                if (HeureD.Text.Equals("")) { HeureD.BorderBrush = Brushes.Red; }
-                if (HeureF.Text.Equals("")) { HeureF.BorderBrush = Brushes.Red; }
+                HeureD.BorderBrush = Brushes.Red;
+                HeureF.BorderBrush = Brushes.Red;
+                return;
             }
-            else
+            
+            string des = Description.Text.Equals("") ? "Pas de description" : Description.Text;
+            if (TypeCB.IsChecked == false)
             {
-                string des = Description.Text.Equals("") ? "Pas de description" : Description.Text;
                 Evenement newE = new Evenement(0, Titre.Text, DateTime.Parse(Date.Text), Type.Text, des, new ObservableCollection<Adherent>(), HeureD.Text + " Heure", HeureF.Text + " Heure");
                 newE.ajouterEvenementBDD();
                 list.Add(newE);
-                Close();
-            }        
+            }
+            else {
+                Evenement newE = new CarnetBattue(Titre.Text, DateTime.Parse(Date.Text), Type.Text, des, new ObservableCollection<Adherent>(), HeureD.Text + " Heure", HeureF.Text + " Heure", (Zone) comboBoxZone.SelectedItem, (Fonctionnaire) comboBoxChef.SelectedItem);
+                newE.ajouterEvenementBDD();
+                list.Add(newE);
+            }
+            Close();
         }
 
         private void Quitter_Click(Object sender,RoutedEventArgs e)

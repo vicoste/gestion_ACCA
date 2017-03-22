@@ -11,6 +11,7 @@ namespace Projet_tut_ACCA.Metier
         Membre,
         President,
         Chef_de_Battue,
-        Tresorier
+        Tresorier,
+        Dev
     }
 }

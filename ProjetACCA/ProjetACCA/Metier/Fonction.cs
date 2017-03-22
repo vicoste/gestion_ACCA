@@ -34,14 +34,25 @@ namespace Projet_tut_ACCA.Metier
             fonctions.Add("Infos Personelles");
             switch (role)
             {
-                case "President":
+                case "Dev":
                     fonctions.Add("Les Adhérents");
                     fonctions.Add("Cotisation");
                     fonctions.Add("Plan de Chasse");
                     fonctions.Add("Les Zones");
+                    fonctions.Add("Les Battues");
+                    break;
+                case "President":
+                    fonctions.Add("Les Adhérents");
+                    fonctions.Add("Plan de Chasse");
+                    fonctions.Add("Les Zones");
                     break;
                 case "Membre":
-                    
+                    break;
+                case "Tresorier":
+                    fonctions.Add("Cotisation");
+                    break;
+                case "Chef_de_Battue":
+                    fonctions.Add("Les Battues");
                     break;
                 default:
                     break;
