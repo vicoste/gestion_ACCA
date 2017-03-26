@@ -20,6 +20,15 @@
                 <DataGridTextColumn Header="Sexe" Binding="{Binding Sexe, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Poids" Binding="{Binding Masse, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Observation" Binding="{Binding Observation, UpdateSourceTrigger=PropertyChanged}" MinWidth="300"/>
+                <DataGridTemplateColumn Header="Operations">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <WrapPanel>
+                                <Button Content="Suppr." Click="supprAnimal"/>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 

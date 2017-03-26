@@ -50,5 +50,12 @@ namespace Projet_tut_ACCA.Vue
                 Autorisation.addAutorisationBDD(gb.autorisations);
             }
         }
+
+        private void supprAnimal(object sender, RoutedEventArgs e)
+        {
+            Animal a = (Animal)gridAnimaux.SelectedItem;
+            Animal.supprimerInfos(a.NumBague, a.DatePrelevement);
+            LesAnimaux.Remove(a);
+        }
     }
 }

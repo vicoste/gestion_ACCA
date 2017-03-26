@@ -13,8 +13,8 @@ namespace Projet_tut_ACCA.Metier
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private string idAnimal;
-        public string IdAnimal
+        private int idAnimal;
+        public int IdAnimal
         {
             get { return idAnimal; }
             set { idAnimal = value; OnPropertyChanged("IdAnimal"); }
@@ -155,6 +155,37 @@ namespace Projet_tut_ACCA.Metier
 
                     connection.Close();
                 }*/
+            }
+        }
+
+        public static void supprimerInfos(int numBague, DateTime datePrelevement)
+        {
+            int numAnimal;
+            SqlConnection connection = Application.getInstance();
+            connection.Open();
+            string commandUTAd = "SELECT * FROM TAnimal WHERE NumBague = @NumBague AND DatePrelevement = @DatePrelevement";
+
+            SqlCommand sqlCommandUTA = new SqlCommand(commandUTAd, connection);
+            sqlCommandUTA.Parameters.AddWithValue("@NumBague", numBague);
+            sqlCommandUTA.Parameters.AddWithValue("@DatePrelevement", datePrelevement);
+            SqlDataReader reader = sqlCommandUTA.ExecuteReader();
+            if (reader.Read())
+            {
+                numAnimal = (int)reader["IdAnimal"];
+            }
+            else
+            {
+                numAnimal = 0;
+            }
+            connection.Close();
+            if (numAnimal != 0)
+            {
+                connection.Open();
+                string commandTA = "DELETE FROM TAnimal WHERE IdAnimal = @IdAnimal";
+                SqlCommand sqlCommandTA = new SqlCommand(commandTA, connection);
+                sqlCommandTA.Parameters.AddWithValue("@IdAnimal", numAnimal);
+                sqlCommandTA.ExecuteNonQuery();
+                connection.Close();
             }
         }
 
