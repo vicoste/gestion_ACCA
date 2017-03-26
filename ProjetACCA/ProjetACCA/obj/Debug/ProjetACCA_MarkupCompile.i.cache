@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\App.xaml
-151019753675
+16-1329592427
 
-38-415830877
+39-856265729
 151320802719
-Vue\Dictionar_listBox1.xaml;Vue\UCAccueil.xaml;Vue\UCCarnetBattue.xaml;Vue\UCPosteChasse.xaml;Vue\UCPlanChasse.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WAjoutEvent.xaml;Vue\WGestionBague.xaml;Vue\WAjoutAnimal.xaml;Vue\WAjoutMembre.xaml;Vue\WConnexion.xaml;
+Vue\Dictionar_listBox1.xaml;Vue\UCAccueil.xaml;Vue\UCCarnetBattue.xaml;Vue\UCPosteChasse.xaml;Vue\UCPlanChasse.xaml;Vue\UCCotisation.xaml;Vue\UCInfoPers.xaml;Vue\UCListeAdherent.xaml;Vue\UCStats.xaml;Vue\WAccueil.xaml;Vue\WAjoutEvent.xaml;Vue\WAttribuerPoste.xaml;Vue\WGestionBague.xaml;Vue\WAjoutAnimal.xaml;Vue\WAjoutMembre.xaml;Vue\WConnexion.xaml;
 
 True
 

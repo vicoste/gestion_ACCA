@@ -169,3 +169,5 @@ C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAj
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAjoutEvent.baml
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCCarnetBattue.g.cs
 C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\UCCarnetBattue.baml
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAttribuerPoste.g.cs
+C:\Users\Utilisateur\Desktop\Projet ACCA\ProjetACCA\ProjetACCA\obj\Debug\Vue\WAttribuerPoste.baml

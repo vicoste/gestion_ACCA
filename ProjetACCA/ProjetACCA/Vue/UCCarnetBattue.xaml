@@ -55,20 +55,38 @@
             <TextBlock Text="Heure de Debut :" Grid.Column="3" Grid.Row="1"/>
             <TextBlock Text="Heure de Fin :" Grid.Column="3" Grid.Row="2"/>
 
-            <TextBox Grid.Column="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.Titre, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
+            <TextBlock Grid.Column="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.Chef, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
             <TextBox Grid.Row="2" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding ElementName=listBattues, Path=SelectedItem.Description, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="4" Text="{Binding ElementName=listBattues, Path=SelectedItem.DateEvent, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="4" Grid.Row="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.HeureDebut, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="4" Grid.Row="2" Text="{Binding ElementName=listBattues, Path=SelectedItem.HeureFin, UpdateSourceTrigger=PropertyChanged}"/>
-            
-            <DataGrid Grid.Row="3" Grid.ColumnSpan="5">
-                
+
+            <DataGrid x:Name="gridPoste" Grid.Row="3" Grid.ColumnSpan="5" AutoGenerateColumns="False" ItemsSource="{Binding ElementName=listBattues, Path=SelectedItem.Participants}" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nom/Prenom">
+                        <DataGridTextColumn.Binding>
+                            <MultiBinding StringFormat="{}{0} {1}">
+                                <Binding Path="Nom"/>
+                                <Binding Path="Prenom"/>
+                            </MultiBinding>
+                        </DataGridTextColumn.Binding>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Téléphone" Binding="{Binding Tel, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTextColumn Header="e-Mail" Binding="{Binding Mail, UpdateSourceTrigger=PropertyChanged}"/>
+                    <DataGridTemplateColumn Header="Attribuer poste">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Choisir" Click="attribuerPoste"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
             </DataGrid>
-            
+
             <Grid Grid.Row="4" Grid.ColumnSpan="5" >
-                <Button HorizontalAlignment="Left" Width="80" Height="20"/>
-                <Button HorizontalAlignment="Center" Width="80" Height="20"/>
-                <Button HorizontalAlignment="Right" Width="80" Height="20"/>
+                <Button HorizontalAlignment="Left" Width="80" Height="30" Content="Visualiser"/>
+                <Button HorizontalAlignment="Center" Width="80" Height="30" Content="Imprimer" Click="imprimerBattue"/>
+                <Button HorizontalAlignment="Right" Width="80" Height="30" Content="Valider"/>
             </Grid>
         </Grid>
     </Grid>

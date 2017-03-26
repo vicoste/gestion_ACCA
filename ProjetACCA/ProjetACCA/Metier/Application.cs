@@ -45,15 +45,13 @@ namespace Projet_tut_ACCA.Metier
 
         public Application()
         {
-            listFonctionnaires = new ObservableCollection<Fonctionnaire>();
             listFonctionnaires = Fonctionnaire.demandeInfos();
-
-            listEvents = new ObservableCollection<Evenement>();
-            listEvents = Evenement.recupEvenement();
 
             posteDeChasse = new PosteChasse();
 
             planDeChasse = new PlanChasse();
+
+            listEvents = Evenement.recupEvenement(listFonctionnaires, posteDeChasse.Zones);
         }
 
         public static SqlConnection getInstance()

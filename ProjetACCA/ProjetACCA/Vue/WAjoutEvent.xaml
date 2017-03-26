@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
-        Title="Ajout Evenement" MinHeight="400" MaxHeight="360" MinWidth="333" MaxWidth="333">
+        Title="Ajout Evenement" MinHeight="400" MaxHeight="360" MinWidth="400" MaxWidth="333">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="104" />

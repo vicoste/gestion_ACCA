@@ -152,6 +152,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vue\WAttribuerPoste.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vue\WGestionBague.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -180,6 +184,9 @@
     </Compile>
     <Compile Include="Vue\WAjoutEvent.xaml.cs">
       <DependentUpon>WAjoutEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vue\WAttribuerPoste.xaml.cs">
+      <DependentUpon>WAttribuerPoste.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vue\WGestionBague.xaml.cs">
       <DependentUpon>WGestionBague.xaml</DependentUpon>

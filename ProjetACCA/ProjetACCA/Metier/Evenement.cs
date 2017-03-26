@@ -112,14 +112,18 @@ namespace Projet_tut_ACCA.Metier
             return participants;
         }
 
-        public static ObservableCollection<Evenement> recupEvenement()
+        public static ObservableCollection<Evenement> recupEvenement(ObservableCollection<Fonctionnaire> fs, ObservableCollection<Zone> zs)
         {
             ObservableCollection<Evenement> evenements = new ObservableCollection<Evenement>();
-            ObservableCollection<Adherent> participants = new ObservableCollection<Adherent>();
+            ObservableCollection<Adherent> participants;
             using (SqlConnection connection = Application.getInstance())
             {
+                //---------SELECT * FROM TEvenement---------
                 connection.Open();
-                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM TEvenement", connection);
+                SqlCommand sqlCommand = new SqlCommand("SELECT * FROM TEvenement WHERE DateEvent > @LocalDate AND Type != @Battue", connection);
+                sqlCommand.Parameters.AddWithValue("@LocalDate", DateTime.Today);
+                sqlCommand.Parameters.AddWithValue("@Battue", "Battue");
+
                 SqlDataReader reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -132,6 +136,31 @@ namespace Projet_tut_ACCA.Metier
                             participants = recupParticipants((int)reader["Id"]),
                             (string)reader["HeureDebut"],
                             (string)reader["HeureFin"]
+                            );
+                    evenements.Add(e);
+                }
+                connection.Close();
+
+                //---------SELECT * FROM TBattue---------
+                connection.Open();
+                SqlCommand sqlCommandB = new SqlCommand("SELECT * FROM TEvenement e, TBattue b WHERE e.DateEvent > @LocalDate AND e.Type = @Battue AND e.Id = b.IdBattue", connection);
+                sqlCommandB.Parameters.AddWithValue("@LocalDate", DateTime.Today);
+                sqlCommandB.Parameters.AddWithValue("@Battue", "Battue");
+
+                SqlDataReader readerB = sqlCommandB.ExecuteReader();
+                while (readerB.Read())
+                {
+                    CarnetBattue e = new CarnetBattue(
+                            (int)readerB["Id"],
+                            (string)readerB["Titre"],
+                            (DateTime)readerB["DateEvent"],
+                            (string)readerB["Type"],
+                            (string)readerB["Description"],
+                            participants = recupParticipants((int)readerB["Id"]),
+                            (string)readerB["HeureDebut"],
+                            (string)readerB["HeureFin"],
+                            zs.First(z => z.IdZone == (int)readerB["IdZoneBattue"]),
+                            fs.First(f => f.Adherent.IdAdherent == (int)readerB["IdChef"])
                             );
                     evenements.Add(e);
                 }
@@ -180,6 +209,13 @@ namespace Projet_tut_ACCA.Metier
                 return;
 
             connection.Close();
+
+            //---------INSERT INTO TBattue---------
+            if (this.Type.Equals("Battue"))
+            {
+                CarnetBattue.ajoutBattueBDD((CarnetBattue) this);
+            }
+
         }
 
         /*public static void ajouterEvenementBDD(ObservableCollection<Evenement> le)
