@@ -24,6 +24,13 @@ namespace Projet_tut_ACCA.Metier
             set { chef = value; OnPropertyChanged("Chef"); }
         }
 
+        private Dictionary<Poste,Adherent> quiVaOu;
+        public Dictionary<Poste, Adherent> QuiVaOu
+        {
+            get { return quiVaOu; }
+            set { quiVaOu = QuiVaOu; OnPropertyChanged("QuiVaOu"); }
+        }
+
         public static void ajoutBattueBDD(CarnetBattue c)
         {
             SqlConnection connection = Application.getInstance();
@@ -48,6 +55,7 @@ namespace Projet_tut_ACCA.Metier
         {
             zone = z;
             chef = f;
+            quiVaOu = new Dictionary<Poste, Adherent>();
         }
     }
 }

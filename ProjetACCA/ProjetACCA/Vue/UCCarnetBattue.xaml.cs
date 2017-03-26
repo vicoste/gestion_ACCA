@@ -24,12 +24,10 @@ namespace Projet_tut_ACCA.Vue
     public partial class UCCarnetBattue : UserControl
     {
         public ObservableCollection<Evenement> lesBattues { get; set; }
-        private Dictionary<Poste, Adherent> quiVaOu;
 
         public UCCarnetBattue(ObservableCollection<Evenement> lesBs)
         {
             lesBattues = lesBs;
-            quiVaOu = new Dictionary<Poste, Adherent>();
             this.DataContext = this;
 
             InitializeComponent();
@@ -37,12 +35,13 @@ namespace Projet_tut_ACCA.Vue
 
         private void attribuerPoste(object sender, RoutedEventArgs e)
         {
-            WAttribuerPoste w = new WAttribuerPoste(((CarnetBattue)listBattues.SelectedItem).Zone.ListPoste, quiVaOu);
+            CarnetBattue battue = (CarnetBattue)listBattues.SelectedItem;
+            WAttribuerPoste w = new WAttribuerPoste(battue.Zone.ListPoste, battue.QuiVaOu);
             if(w.ShowDialog() == true)
             {
                 Poste p = null;
                 Adherent a = (Adherent)gridPoste.SelectedItem;
-                foreach (var v in quiVaOu)
+                foreach (var v in battue.QuiVaOu)
                 {
                     if(v.Value.IdAdherent == a.IdAdherent)
                     {
@@ -50,21 +49,21 @@ namespace Projet_tut_ACCA.Vue
                     }
                 }
                 if (p != null)
-                    quiVaOu.Remove(p);
-                quiVaOu[w.selectedPoste] = a;
+                    battue.QuiVaOu.Remove(p);
+                battue.QuiVaOu[w.selectedPoste] = a;
             }
         }
 
         private void imprimerBattue(object sender, RoutedEventArgs e)
         {
-            StreamWriter w = new StreamWriter(@"..\..\..\" + "test.txt");
             CarnetBattue battue = (CarnetBattue)listBattues.SelectedItem;
+            StreamWriter w = new StreamWriter(@"..\..\..\" + battue.Titre + "_impression.txt");
             w.WriteLine(battue.Chef);
             w.WriteLine(battue.DateEvent);
             w.WriteLine(battue.HeureDebut + "\t" + battue.HeureFin);
             w.WriteLine("Observation :");
             w.WriteLine(battue.Description);
-            foreach (var kv in quiVaOu)
+            foreach (var kv in battue.QuiVaOu)
                 w.WriteLine(kv.Key + "\t" + kv.Value);
             w.Close();
         }

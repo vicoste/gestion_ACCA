@@ -18,7 +18,7 @@
             
         </Grid>
         
-        <DataGrid x:Name="tabAdherent" ItemsSource="{Binding Path=persons, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="False" Grid.Row="1" Grid.RowSpan="2">
+        <DataGrid x:Name="tabAdherent" ItemsSource="{Binding Path=persons, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" IsReadOnly="False" Grid.Row="1" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nom" Binding="{Binding Adherent.Nom, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Prénom" Binding="{Binding Adherent.Prenom, UpdateSourceTrigger=PropertyChanged}"/>
@@ -40,6 +40,6 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="button_ajout" Content="Ajout Adhérent" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="60" Margin="10,20,0,0" Click="button_ajout_Click"/>
+        <Button x:Name="button_ajout" Content="Ajout Adhérent" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" Width="100" Height="30"  Margin="10,20,0,0" Click="button_ajout_Click"/>
     </Grid>
 </UserControl>

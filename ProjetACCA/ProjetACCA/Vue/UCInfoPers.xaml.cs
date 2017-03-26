@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Projet_tut_ACCA.Metier;
+using System.Data.SqlClient;
 
 namespace Projet_tut_ACCA.Vue
 {
@@ -28,6 +29,7 @@ namespace Projet_tut_ACCA.Vue
             currentUser = cF;
 
             InitializeComponent();
+            infoFonction.Text = Adherent.getAllFonction(currentUser.Adherent.IdAdherent);
         }
     }
 }

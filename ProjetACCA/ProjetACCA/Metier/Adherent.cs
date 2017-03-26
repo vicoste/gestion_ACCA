@@ -43,8 +43,8 @@ namespace Projet_tut_ACCA.Metier
             set { prenom = value; OnPropertyChanged("Prenom"); }
         }
 
-        private String statut; 
-        public String Statut {
+        private string statut; 
+        public string Statut {
             get { return statut; }
             set { statut = value; OnPropertyChanged("Statut"); }
         }
@@ -128,6 +128,32 @@ namespace Projet_tut_ACCA.Metier
                 evenement.Participants.Remove(this);
                 return true;
             }
+        }
+
+        public static string getAllFonction(int idAdherent)
+        {
+            string allFonction = "Voici toutes les fonctions qui vous avez effectué:\n";
+
+            SqlConnection connection = Metier.Application.getInstance();
+            connection.Open();
+
+            string textCommand = "SELECT * FROM TRoleAdherent WHERE MatriculeAdherent = @Id ORDER BY DateDebut ASC";
+            SqlCommand sqlCommand = new SqlCommand(textCommand, connection);
+            sqlCommand.Parameters.AddWithValue("@Id", idAdherent);
+
+            SqlDataReader reader = sqlCommand.ExecuteReader();
+            while (reader.Read())
+            {
+                DateTime debut = (DateTime)reader["DateDebut"];
+                DateTime fin = (reader["DateFin"] as DateTime?).GetValueOrDefault(DateTime.Today);
+                string role = (string)reader["RoleAdherent"];
+                allFonction += "Du : " + debut
+                    + "\tAu : " + fin + "\t"
+                    + "\tFonction : " + role + "\n";
+            }
+
+            connection.Close();
+            return allFonction;
         }
 
         private void OnPropertyChanged(string v)
