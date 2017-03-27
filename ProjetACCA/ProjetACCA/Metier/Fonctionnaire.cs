@@ -65,7 +65,7 @@ namespace Projet_tut_ACCA.Metier
                     //---------INSERT INTO TAdherent---------
                     connection.Open();
 
-                    string commandTAd = "INSERT INTO TAdherent (Nom,Prenom,Statut,Adresse,Telephone,Mail,Pseudo,Mdp,DateAdhesion,DateDepart) VALUES ("
+                    string commandTAd = "INSERT INTO TAdherent (Nom,Prenom,Statut,Adresse,Telephone,Mail,Pseudo,Mdp,DateAdhesion,DateDepart) OUTPUT INSERTED.Matricule VALUES ("
                         + "@Nom, @Prenom, @Statut, @Adresse, @Telephone, @Mail, @Pseudo, @Mdp, @DateAdhesion, NULL)";
 
                     SqlCommand sqlCommandTAd = new SqlCommand(commandTAd, connection);
@@ -80,12 +80,12 @@ namespace Projet_tut_ACCA.Metier
                     sqlCommandTAd.Parameters.AddWithValue("@Mdp", f.Adherent.Mdp);
                     sqlCommandTAd.Parameters.AddWithValue("@DateAdhesion", f.Adherent.DateAdhesion);
 
-                    sqlCommandTAd.ExecuteNonQuery();
+                    matricule = (int) sqlCommandTAd.ExecuteScalar();
 
                     connection.Close();
 
                     //---------SELECT Matricule FROM TAdherent---------
-                    connection.Open();
+                    /*connection.Open();
 
                     string commandS = "SELECT Matricule FROM TAdherent WHERE Pseudo = @Pseudo";
                     SqlCommand sqlCommandS = new SqlCommand(commandS, connection);
@@ -96,7 +96,7 @@ namespace Projet_tut_ACCA.Metier
                     else
                         return;
 
-                    connection.Close();
+                    connection.Close();*/
 
                     //---------INSERT INTO TRoleAdherent---------
                     connection.Open();

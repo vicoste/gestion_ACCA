@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Projet_tut_ACCA.Metier;
+using System.Text.RegularExpressions;
 
 namespace Projet_tut_ACCA.Vue
 {
@@ -60,10 +61,24 @@ namespace Projet_tut_ACCA.Vue
             this.Close();
         }
 
-        private String genererIdentifiant(String nom, String prenom)  //2premieres lettres du prenom, 6premieres lettre du nom --EDIT-- en minuscule
+        private string replaceAccent(string pattern, string input, string replacement)
+        {
+            Regex rgx = new Regex(@"" + pattern);
+            return rgx.Replace(input, replacement);
+        }
+
+        private String genererIdentifiant(String nom, String prenom)  //2premieres lettres du prenom, 6premieres lettre du nom --EDIT-- en minuscule --EDIT-- sans accent
         {
             nom = nom.ToLower();
             prenom = prenom.ToLower();
+
+            nom = replaceAccent("[àâä]", nom, "a");
+            prenom = replaceAccent("[àâä]", nom, "a");
+            nom = replaceAccent("[éèêë]", nom, "e");
+            prenom = replaceAccent("[éèêë]", nom, "e");
+            nom = replaceAccent("[îï]", nom, "i");
+            prenom = replaceAccent("[îï]", nom, "i");
+
             int i = 0;
             String s1;
             if (prenom.Length < 2) s1 = prenom;

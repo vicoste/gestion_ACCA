@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Data;
+using System.Collections.ObjectModel;
 
 namespace Projet_tut_ACCA.Metier
 {
@@ -98,11 +99,6 @@ namespace Projet_tut_ACCA.Metier
         public Adherent(int idAdherent, string login, string mdp, string nom, string prenom, string statut, string adresse, string tel, string mail)
             : this(idAdherent, login, mdp, nom, prenom, statut, adresse, tel, mail, DateTime.Today)
         { }
-
-        public Adherent()
-        {
-            idAdherent = 0;
-        }
 
         public Boolean participerEvenement(Evenement evenement)
         {

@@ -43,20 +43,26 @@ namespace Projet_tut_ACCA.Metier
             set { listEvents = value; OnPropertyChanged("ListEvents"); }
         }
 
+        private ObservableCollection<CotisationAdherent> lesCotisations;
+        public ObservableCollection<CotisationAdherent> LesCotisations
+        {
+            get { return lesCotisations; }
+            set { lesCotisations = value; OnPropertyChanged("LesCotisations"); }
+        }
+
         public Application()
         {
             listFonctionnaires = Fonctionnaire.demandeInfos();
-
             posteDeChasse = new PosteChasse();
-
             planDeChasse = new PlanChasse();
-
             listEvents = Evenement.recupEvenement(listFonctionnaires, posteDeChasse.Zones);
+            LesCotisations = CotisationAdherent.DemanderCotisation(this);
         }
 
         public static SqlConnection getInstance()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["ProjetACCA.Properties.Settings.BDACCAConnectionString"].ConnectionString;
+            string dir = System.IO.Directory.GetCurrentDirectory();
+            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename ="+ dir.Substring(0, dir.Length - 9) + "BDACCA.mdf; Integrated Security = True; Connect Timeout = 30";
             return instance = new SqlConnection(connectionString);
         }
 
@@ -75,10 +81,15 @@ namespace Projet_tut_ACCA.Metier
             Fonctionnaire.ajouterFonctionnaireBDD(ListFonctionnaires);
             Animal.ajoutAnimalBDD(planDeChasse.LesAnimaux);
             Zone.ajoutZoneBDD(posteDeChasse.Zones);
-            //Evenement.ajouterEvenementBDD(listEvents);
+            CotisationAdherent.AjouterCotisation(LesCotisations);
 
             instance.Close();
             instance = null;
+        }
+
+        public Adherent getAdherentById(int idAd)
+        {
+            return ListFonctionnaires.First(f => f.Adherent.IdAdherent == idAd).Adherent;
         }
 
         private void OnPropertyChanged(string v)

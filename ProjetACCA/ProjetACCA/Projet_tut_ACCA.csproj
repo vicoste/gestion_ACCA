@@ -84,7 +84,7 @@
     <Compile Include="Metier\PlanChasse.cs" />
     <Compile Include="Metier\Poste.cs" />
     <Compile Include="Metier\PosteChasse.cs" />
-    <Compile Include="Metier\Registre.cs" />
+    <Compile Include="Metier\CotisationAdherent.cs" />
     <Compile Include="Metier\ESocietaire.cs" />
     <Compile Include="Metier\Zone.cs" />
     <Compile Include="Vue\UCAccueil.xaml.cs">

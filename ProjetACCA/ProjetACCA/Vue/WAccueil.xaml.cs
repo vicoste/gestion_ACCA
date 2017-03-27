@@ -85,7 +85,7 @@ namespace Projet_tut_ACCA.Vue
                     loadUC(new UCListeAdherent(app.ListFonctionnaires));
                     break;
                 case "Cotisation":
-                    loadUC(new UCCotisation());
+                    loadUC(new UCCotisation(app));
                     break;
                 case "Infos Personelles":
                     loadUC(new UCInfoPers(currentUser));
