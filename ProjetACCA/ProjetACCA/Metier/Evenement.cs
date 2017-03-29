@@ -143,13 +143,13 @@ namespace Projet_tut_ACCA.Metier
 
                 //---------SELECT * FROM TBattue---------
                 connection.Open();
-                SqlCommand sqlCommandB = new SqlCommand("SELECT * FROM TEvenement e, TBattue b WHERE e.DateEvent > @LocalDate AND e.Type = @Battue AND e.Id = b.IdBattue", connection);
-                sqlCommandB.Parameters.AddWithValue("@LocalDate", DateTime.Today);
+                SqlCommand sqlCommandB = new SqlCommand("SELECT * FROM TEvenement e, TBattue b WHERE e.Type = @Battue AND e.Id = b.IdBattue", connection);
                 sqlCommandB.Parameters.AddWithValue("@Battue", "Battue");
 
                 SqlDataReader readerB = sqlCommandB.ExecuteReader();
                 while (readerB.Read())
                 {
+                    Zone zoneBattue = zs.First(z => z.IdZone == (int)readerB["IdZoneBattue"]);
                     CarnetBattue e = new CarnetBattue(
                             (int)readerB["Id"],
                             (string)readerB["Titre"],
@@ -159,9 +159,15 @@ namespace Projet_tut_ACCA.Metier
                             participants = recupParticipants((int)readerB["Id"]),
                             (string)readerB["HeureDebut"],
                             (string)readerB["HeureFin"],
-                            zs.First(z => z.IdZone == (int)readerB["IdZoneBattue"]),
-                            fs.First(f => f.Adherent.IdAdherent == (int)readerB["IdChef"])
+                            zoneBattue,
+                            fs.First(f => f.Adherent.IdAdherent == (int)readerB["IdChef"]),
+                            CarnetBattue.recupQuiVaOu((int)readerB["Id"], zoneBattue, fs)
                             );
+                    if (e.DateEvent <= DateTime.Today)
+                    {
+                        e.IsModif = 0;
+                    }
+
                     evenements.Add(e);
                 }
                 connection.Close();
@@ -177,7 +183,7 @@ namespace Projet_tut_ACCA.Metier
 
             connection.Open();
 
-            string commandTAd = "INSERT INTO TEvenement (Titre, DateEvent, HeureDebut, HeureFin, Type, Description) VALUES ("
+            string commandTAd = "INSERT INTO TEvenement (Titre, DateEvent, HeureDebut, HeureFin, Type, Description) OUTPUT INSERTED.Id VALUES ("
                 + "@Titre, @DateEvent, @HeureDebut, @HeureFin, @Type, @Description)";
 
             SqlCommand sqlCommandTAd = new SqlCommand(commandTAd, connection);
@@ -189,24 +195,7 @@ namespace Projet_tut_ACCA.Metier
             sqlCommandTAd.Parameters.AddWithValue("@Type", Type);
             sqlCommandTAd.Parameters.AddWithValue("@Description", Description);
 
-            sqlCommandTAd.ExecuteNonQuery();
-
-            connection.Close();
-
-            //---------SELECT Id FROM TEvenement---------
-            connection.Open();
-
-            string commandS = "SELECT Id FROM TEvenement WHERE Titre = @Titre AND DateEvent = @DateEvent";
-            SqlCommand sqlCommandS = new SqlCommand(commandS, connection);
-
-            sqlCommandS.Parameters.AddWithValue("@Titre", Titre);
-            sqlCommandS.Parameters.AddWithValue("@DateEvent", DateEvent);
-
-            SqlDataReader reader = sqlCommandS.ExecuteReader();
-            if (reader.Read())
-                IdEvenement = (int)reader["Id"];
-            else
-                return;
+            IdEvenement = (int)sqlCommandTAd.ExecuteScalar();
 
             connection.Close();
 
@@ -215,97 +204,60 @@ namespace Projet_tut_ACCA.Metier
             {
                 CarnetBattue.ajoutBattueBDD((CarnetBattue) this);
             }
-
         }
 
-        /*public static void ajouterEvenementBDD(ObservableCollection<Evenement> le)
+        public static void modifEvenementBDD(ObservableCollection<Evenement> evs)
         {
             SqlConnection connection = Application.getInstance();
-
-            foreach (Evenement e in le)
+            foreach (Evenement ev in evs)
             {
-                if (e.IsNew)
+                if (ev.DateEvent <= DateTime.Today && ev.Type.Equals("Battue"))
                 {
-                    //---------INSERT INTO TEvenement---------
-                    // Cette partie sera probablement optionnelle dans le cas présent, et sera utilisé lors de l'ajout d'un participant
-                    
                     connection.Open();
+                    string commandUB = "UPDATE TBattue SET IsModif = 0 WHERE IdBattue = @IdBattue";
+                    SqlCommand sqlCommandUB = new SqlCommand(commandUB, connection);
 
-                    string commandTAd = "INSERT INTO TEvenement (Titre, DateEvent, HeureDebut, HeureFin, Type, Description) VALUES ("
-                        + "@Titre, @DateEvent, @HeureDebut, @HeureFin, @Type, @Description)";
+                    sqlCommandUB.Parameters.AddWithValue("@IdBattue", ev.IdEvenement);
 
-                    SqlCommand sqlCommandTAd = new SqlCommand(commandTAd, connection);
-
-                    sqlCommandTAd.Parameters.AddWithValue("@Titre", e.Titre);
-                    sqlCommandTAd.Parameters.AddWithValue("@DateEvent", e.DateEvent);
-                    sqlCommandTAd.Parameters.AddWithValue("@HeureDebut", e.HeureDebut);
-                    sqlCommandTAd.Parameters.AddWithValue("@HeureFin", e.HeureFin);
-                    sqlCommandTAd.Parameters.AddWithValue("@Type", e.Type);
-                    sqlCommandTAd.Parameters.AddWithValue("@Description", e.Description);
-
-                    sqlCommandTAd.ExecuteNonQuery();
-
-                    connection.Close();
-
-                    //---------SELECT Id FROM TEvenement---------
-                    connection.Open();
-
-                    int noEvenement;
-
-                    string commandS = "SELECT Id FROM TEvenement WHERE Titre = @Titre AND DateEvent = @DateEvent";
-                    SqlCommand sqlCommandS = new SqlCommand(commandS, connection);
-
-                    sqlCommandS.Parameters.AddWithValue("@Titre", e.Titre);
-                    sqlCommandS.Parameters.AddWithValue("@DateEvent", e.DateEvent);
-
-                    SqlDataReader reader = sqlCommandS.ExecuteReader();
-                    if (reader.Read())
-                        noEvenement = (int)reader["Id"];
-                    else
-                        return;
-
-                    connection.Close();
-
-                    //---------INSERT INTO TEvenementAdherent---------
-                    // Cette partie sera probablement optionnelle dans le cas présent, et sera utilisé lors de l'ajout d'un participant
-                    
-                    connection.Open();
-
-                    foreach (Adherent a in e.Participants)
-                    {
-                        string commandTRAd = "INSERT INTO TEvenementAdherent (MatriculeAdherent,IdEvenement) VALUES ("
-                            + "@MatriculeAdherent, @IdEvenement)";
-
-                        SqlCommand sqlCommandTRAd = new SqlCommand(commandTRAd, connection);
-
-                        sqlCommandTRAd.Parameters.AddWithValue("@MatriculeAdherent", a.IdAdherent);
-                        sqlCommandTRAd.Parameters.AddWithValue("@IdEvenement", noEvenement);
-
-                        sqlCommandTRAd.ExecuteNonQuery();
-                    }
-
+                    sqlCommandUB.ExecuteNonQuery();
                     connection.Close();
                 }
-                if (e.IsModified)
+
+                if (ev.IsModified)
                 {
-                    //---------UPDATE TEvenement---------
-                    connection.Open();
+                    if (ev.Type.Equals("Battue"))
+                    {
+                        connection.Open();
+                        string commandDAP = "DELETE FROM TAdherentPoste WHERE IdChasse = @IdChasse";
+                        SqlCommand sqlCommandDAP = new SqlCommand(commandDAP, connection);
 
-                    string commandUTAd = "UPDATE TEvenement SET Titre = @Titre, DateEvent = @DateEvent, Type = @Type, Description = @Description WHERE Titre = @Titre";
+                        sqlCommandDAP.Parameters.AddWithValue("@IdChasse", ev.IdEvenement);
+                        sqlCommandDAP.ExecuteNonQuery();
 
-                    SqlCommand sqlCommandUTAd = new SqlCommand(commandUTAd, connection);
+                        connection.Close();
 
-                    sqlCommandUTAd.Parameters.AddWithValue("@Titre", e.Titre);
-                    sqlCommandUTAd.Parameters.AddWithValue("@DateEvent", e.DateEvent);
-                    sqlCommandUTAd.Parameters.AddWithValue("@Type", e.Type);
-                    sqlCommandUTAd.Parameters.AddWithValue("@Description", e.Description);
+                        connection.Open();
+                        foreach (var kv in ((CarnetBattue)ev).QuiVaOu)
+                        {
+                            string commandIAP = "INSERT INTO TAdherentPoste (IdChasseur, IdPosteBattue, IdChasse) VALUES ("
+                                + "@IdChasseur, @IdPosteBattue, @IdChasse)";
+                            SqlCommand sqlCommandIAP = new SqlCommand(commandIAP, connection);
 
-                    sqlCommandUTAd.ExecuteNonQuery();
+                            sqlCommandIAP.Parameters.AddWithValue("@IdChasseur", kv.Value.IdAdherent);
+                            sqlCommandIAP.Parameters.AddWithValue("@IdPosteBattue", kv.Key.Numero);
+                            sqlCommandIAP.Parameters.AddWithValue("@IdChasse", ev.IdEvenement);
 
-                    connection.Close();
+                            sqlCommandIAP.ExecuteNonQuery();
+                        }
+                        connection.Close();   
+                    }
+                    else
+                    {
+                        //Modif pour les evenements normaux à voir
+                    }
                 }
             }
-        }*/
+        }
 
         protected void OnPropertyChanged(string v)
          {

@@ -52,7 +52,7 @@ namespace Projet_tut_ACCA.Vue
                 list.Add(newE);
             }
             else {
-                Evenement newE = new CarnetBattue(0, Titre.Text, DateTime.Parse(Date.Text), Type.Text, des, new ObservableCollection<Adherent>(), HeureD.Text + " Heure", HeureF.Text + " Heure", (Zone) comboBoxZone.SelectedItem, (Fonctionnaire) comboBoxChef.SelectedItem);
+                Evenement newE = new CarnetBattue(0, Titre.Text, DateTime.Parse(Date.Text), Type.Text, des, new ObservableCollection<Adherent>(), HeureD.Text + " Heure", HeureF.Text + " Heure", (Zone) comboBoxZone.SelectedItem, (Fonctionnaire) comboBoxChef.SelectedItem, new Dictionary<Poste, Adherent>());
                 newE.ajouterEvenementBDD();
                 list.Add(newE);
             }

@@ -82,6 +82,7 @@ namespace Projet_tut_ACCA.Metier
             Animal.ajoutAnimalBDD(planDeChasse.LesAnimaux);
             Zone.ajoutZoneBDD(posteDeChasse.Zones);
             CotisationAdherent.AjouterCotisation(LesCotisations);
+            Evenement.modifEvenementBDD(listEvents);
 
             instance.Close();
             instance = null;

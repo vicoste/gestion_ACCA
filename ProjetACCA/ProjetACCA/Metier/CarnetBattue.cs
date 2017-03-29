@@ -31,6 +31,13 @@ namespace Projet_tut_ACCA.Metier
             set { quiVaOu = QuiVaOu; OnPropertyChanged("QuiVaOu"); }
         }
 
+        private int isModif;
+        public int IsModif
+        {
+            get { return isModif; }
+            set { isModif = value; OnPropertyChanged("IsModif"); }
+        }
+
         public static void ajoutBattueBDD(CarnetBattue c)
         {
             SqlConnection connection = Application.getInstance();
@@ -50,12 +57,47 @@ namespace Projet_tut_ACCA.Metier
             connection.Close();
         }
 
-        public CarnetBattue(int id, string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string heureD, string heureF, Zone z, Fonctionnaire f)
-            : base(id,titre,dateEvent,type,description,participants, heureD, heureF)
+        public static Dictionary<Poste, Adherent> recupQuiVaOu(int idBattue, Zone z, ObservableCollection<Fonctionnaire> lesFonctionnaires)
+        {
+            Dictionary<Poste, Adherent> quiVaOu = new Dictionary<Poste, Adherent>();
+
+            SqlConnection connection = Application.getInstance();
+            connection.Open();
+
+            string commandSAP = "SELECT * FROM TAdherentPoste WHERE IdChasse = @IdChasse";
+            SqlCommand sqlCommandSAP = new SqlCommand(commandSAP, connection);
+
+            sqlCommandSAP.Parameters.AddWithValue("@IdChasse", idBattue);
+
+            SqlDataReader reader = sqlCommandSAP.ExecuteReader();
+            while(reader.Read())
+            {
+                string numero = (string)reader["IdPosteBattue"];
+                Poste poste = null;
+                foreach (Poste p in z.ListPoste)
+                {
+                    if (p.Numero.Equals(numero))
+                    {
+                        poste = p;
+                        break;
+                    }
+                }
+                quiVaOu.Add(
+                    poste,
+                    lesFonctionnaires.First(f => f.Adherent.IdAdherent == (int)reader["IdChasseur"]).Adherent);
+            }
+
+            connection.Close();
+            return quiVaOu;
+        }
+
+        public CarnetBattue(int id, string titre, DateTime dateEvent, string type, string description, ObservableCollection<Adherent> participants, string heureD, string heureF, Zone z, Fonctionnaire f, Dictionary<Poste, Adherent> quiVaOu, int isModif = 1)
+            : base(id, titre, dateEvent, type, description, participants, heureD, heureF)
         {
             zone = z;
             chef = f;
-            quiVaOu = new Dictionary<Poste, Adherent>();
+            this.quiVaOu = quiVaOu;
+            this.isModif = isModif;
         }
     }
 }

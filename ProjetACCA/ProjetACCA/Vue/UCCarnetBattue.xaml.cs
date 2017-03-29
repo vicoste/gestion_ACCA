@@ -67,5 +67,10 @@ namespace Projet_tut_ACCA.Vue
                 w.WriteLine(kv.Key + "\t" + kv.Value);
             w.Close();
         }
+
+        private void validerQuiVaOu(object sender, RoutedEventArgs e)
+        {
+            ((CarnetBattue)listBattues.SelectedItem).IsModified = true;
+        }
     }
 }

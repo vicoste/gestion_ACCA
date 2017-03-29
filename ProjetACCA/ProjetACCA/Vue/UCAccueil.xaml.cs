@@ -26,6 +26,8 @@ namespace Projet_tut_ACCA.Vue
         private List<Fonctionnaire> chefs;
         private ObservableCollection<Zone> zones;
 
+        private ICollectionView srcEv;
+
         public UCAccueil(WAccueil a, ObservableCollection<Evenement> l, bool isPresident, List<Fonctionnaire> chefs, ObservableCollection<Zone> zones)
         {
             this.DataContext = this;
@@ -37,7 +39,10 @@ namespace Projet_tut_ACCA.Vue
             InitializeComponent();
 
             buttonAddEvent.Visibility = isPresident ? Visibility.Visible : Visibility.Hidden;
-            ListeB.ItemsSource = LesEvents;     
+            srcEv = CollectionViewSource.GetDefaultView(LesEvents);
+            Reset_Click(null, null);
+
+            ListeB.ItemsSource = LesEvents;
         }
 
         private void Suivant_Click(object sender, RoutedEventArgs e)
@@ -66,7 +71,6 @@ namespace Projet_tut_ACCA.Vue
                 tex.Text.ToLower();
                 if (tex.Text != null)
                 {
-                    ICollectionView srcEv = CollectionViewSource.GetDefaultView(LesEvents);
                     srcEv.Filter = new Predicate<object>(n => (n as Evenement).Titre.ToLower().Contains(tex.Text.ToLower()));
                 }
                 tex.Visibility = Visibility.Hidden;
@@ -98,17 +102,16 @@ namespace Projet_tut_ACCA.Vue
 
         private void Filtre_Click(object sender, RoutedEventArgs e)
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(LesEvents);
             switch (comboBox.Text)
             {
                 case "Type":
                     Reset_Click(sender, e);
-                    view.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
-                    view.SortDescriptions.Add(new SortDescription("Type", ListSortDirection.Ascending));
+                    srcEv.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
+                    srcEv.SortDescriptions.Add(new SortDescription("Type", ListSortDirection.Ascending));
                     break;
                 case "Nom":
                     Reset_Click(sender, e);
-                    view.SortDescriptions.Add(new SortDescription("Titre", ListSortDirection.Ascending));
+                    srcEv.SortDescriptions.Add(new SortDescription("Titre", ListSortDirection.Ascending));
                     break;
                 default: break;
             }
@@ -116,9 +119,9 @@ namespace Projet_tut_ACCA.Vue
 
         private void Reset_Click(object sender, RoutedEventArgs e)
         {
-            ICollectionView view = CollectionViewSource.GetDefaultView(LesEvents);
-            view.GroupDescriptions.Clear();
-            view.SortDescriptions.Clear();
+            srcEv.GroupDescriptions.Clear();
+            srcEv.SortDescriptions.Clear();
+            srcEv.Filter = (ev => ((Evenement)ev).DateEvent > DateTime.Today);
         }
 
         private void buttonAddEvent_Click(object sender, RoutedEventArgs e)
