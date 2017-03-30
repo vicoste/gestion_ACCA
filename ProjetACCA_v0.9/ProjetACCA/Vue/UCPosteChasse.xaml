@@ -6,6 +6,15 @@
              xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                  Source="Dictionar_listBox1.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*" />
@@ -24,21 +33,21 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Grid.Row="1" Content="Ajouter Zone" Click="ajouterNouvelleZone" Margin="10"/>
+            <Button Style="{StaticResource boutonConnexion}" Grid.Row="1" Content="Ajouter Zone" Click="ajouterNouvelleZone" Width="auto"/>
         </Grid>
-            <Grid Grid.Column="1">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="90*"/>
                 <RowDefinition Height="10*"/>
             </Grid.RowDefinitions>
-            <ListBox x:Name="listPostes" ItemsSource="{Binding SelectedItem.ListPoste, ElementName=listZones}" Margin="5,0">
+            <ListBox x:Name="listPostes" ItemsSource="{Binding SelectedItem.ListPoste, ElementName=listZones}" Margin="5,0" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Libelle}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button Grid.Row="1" Content="Ajouter Poste" Click="ajouterNouveauPoste" Margin="10"/>
+            <Button Style="{StaticResource boutonConnexion}" Grid.Row="1" Content="Ajouter Poste" Click="ajouterNouveauPoste" Width="auto"/>
         </Grid>
         <Grid x:Name="gridPoste" Grid.Column="2">
             <Grid.RowDefinitions>
@@ -62,20 +71,20 @@
                 </Style>
             </Grid.Resources>
 
-            <TextBlock Text="Nom Zone :" />
-            <TextBox Text="{Binding ElementName=listZones, Path=SelectedItem.Nom, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="20" />
-            
-            <TextBlock Text="Numero :" Grid.Row="1"/>
-            <TextBlock Text="Libellé :" Grid.Row="2"/>
-            <TextBlock Text="Coordonnées :" Grid.Row="3"/>
-            <TextBlock Text="Observation :" Grid.Row="4"/>
+            <TextBlock Style="{StaticResource infoPers}"  Text="Nom Zone :" />
+            <TextBox Text="{Binding ElementName=listZones, Path=SelectedItem.Nom, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Height="30" />
 
-            <TextBlock Text="{Binding ElementName=listPostes, Path=SelectedItem.Numero, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" />
-            <TextBox Text="{Binding ElementName=listPostes, Path=SelectedItem.Libelle, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Height="20"/>
-            <TextBox Text="{Binding ElementName=listPostes, Path=SelectedItem.Gps, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" Height="20"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Numero :" Grid.Row="1"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Libellé :" Grid.Row="2"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Coordonnées :" Grid.Row="3"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Observation :" Grid.Row="4"/>
+
+            <TextBlock Style="{StaticResource infoPersUser}"  Text="{Binding ElementName=listPostes, Path=SelectedItem.Numero, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="1" />
+            <TextBox Text="{Binding ElementName=listPostes, Path=SelectedItem.Libelle, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="2" Height="30"/>
+            <TextBox Text="{Binding ElementName=listPostes, Path=SelectedItem.Gps, UpdateSourceTrigger=PropertyChanged}" Grid.Column="1" Grid.Row="4" Height="30"/>
             <TextBox Text="{Binding ElementName=listPostes, Path=SelectedItem.Observation, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" Grid.Row="5" TextWrapping="Wrap" HorizontalContentAlignment="Left" VerticalContentAlignment="Top"/>
 
-            <Button x:Name="buttonModif" Grid.Row="6" Grid.ColumnSpan="2" Content="Enregistrer Modification" Margin="10" Click="buttonModifPoste" />
+            <Button Style="{StaticResource boutonConnexion}" x:Name="buttonModif" Grid.Row="6" Grid.ColumnSpan="2" Content="Enregistrer Modification"  Click="buttonModifPoste" Width="Auto"  />
         </Grid>
     </Grid>
 </UserControl>

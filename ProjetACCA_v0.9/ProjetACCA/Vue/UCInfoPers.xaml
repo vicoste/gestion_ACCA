@@ -6,7 +6,16 @@
              xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
-
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                  Source="Dictionar_listBox1.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
     <Grid DataContext="{Binding currentUser}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="30*" />
@@ -29,23 +38,23 @@
                 <Setter Property="VerticalAlignment" Value="Center"/>
             </Style>
         </Grid.Resources>
-        
-        <TextBlock Text="Nom :" />
-        <TextBlock x:Name="TextBoxNom" Grid.Column="1" Text="{Binding Adherent.Nom}"/>
-        <TextBlock Text="Prénom :" Grid.Row="1"/>
-        <TextBlock x:Name="TextBoxPrenom" Grid.Row="1" Grid.Column="1" Text="{Binding Adherent.Prenom}" />
-        <TextBlock Text="Statut :" Grid.Row="2" />
-        <TextBlock x:Name="TextBoxStatut" Grid.Row="2" Grid.Column="1" Text="{Binding Adherent.Statut}" />
-        <TextBlock Text="Date d'adhésion :" Grid.Row="3" />
-        <TextBlock x:Name="TextBoxDate" Grid.Row="3" Grid.Column="1" Text="{Binding Adherent.DateAdhesion}" />
-        <TextBlock Text="Adresse :" Grid.Row="4" />
-        <TextBlock x:Name="TextBoxAdresse" Grid.Row="4" Grid.Column="1" Text="{Binding Adherent.Adresse}" />
-        <TextBlock Text="N° de Téléphone :" Grid.Row="5" />
-        <TextBlock x:Name="TextBoxTel" Grid.Row="5" Grid.Column="1" Text="{Binding Adherent.Tel}" />
-        <TextBlock Text="Adresse Mail :" Grid.Row="6" />
-        <TextBlock x:Name="TextBoxMail" Grid.Row="6" Grid.Column="1" Text="{Binding Adherent.Mail}" />
-        <TextBlock Text="Qualité du Societaire :" Grid.Row="7" />
-        <TextBlock x:Name="TextBoxSoc" Grid.Row="7" Grid.Column="1" Text="{Binding Adherent.Statut}" />
+
+        <TextBlock Text="Nom :" Style="{StaticResource infoPers}" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxNom" Grid.Column="1" Text="{Binding Adherent.Nom}"/>
+        <TextBlock Style="{StaticResource infoPers}" Text="Prénom :" Grid.Row="1"/>
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxPrenom" Grid.Row="1" Grid.Column="1" Text="{Binding Adherent.Prenom}" />
+        <TextBlock Style="{StaticResource infoPers}" Text="Statut :" Grid.Row="2" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxStatut" Grid.Row="2" Grid.Column="1" Text="{Binding Adherent.Statut}" />
+        <TextBlock Style="{StaticResource infoPers}" Text="Date d'adhésion :" Grid.Row="3" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxDate" Grid.Row="3" Grid.Column="1" Text="{Binding Adherent.DateAdhesion}" />
+        <TextBlock Style="{StaticResource infoPers}" Text="Adresse :" Grid.Row="4" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxAdresse" Grid.Row="4" Grid.Column="1" Text="{Binding Adherent.Adresse}" />
+        <TextBlock Style="{StaticResource infoPers}" Text="N° de Téléphone :" Grid.Row="5" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxTel" Grid.Row="5" Grid.Column="1" Text="{Binding Adherent.Tel}" />
+        <TextBlock Style="{StaticResource infoPers}" Text="Adresse Mail :" Grid.Row="6" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxMail" Grid.Row="6" Grid.Column="1" Text="{Binding Adherent.Mail}" />
+        <TextBlock Style="{StaticResource infoPers}" Text="Qualité du Societaire :" Grid.Row="7" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxSoc" Grid.Row="7" Grid.Column="1" Text="{Binding Fonction.Role}" />
 
         <Border BorderBrush="DarkBlue" BorderThickness="5" Grid.Row="8" Grid.ColumnSpan="2" Margin="5" Padding="5">
             <TextBlock x:Name="infoFonction" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>

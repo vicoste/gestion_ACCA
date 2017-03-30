@@ -6,6 +6,15 @@
              xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                  Source="Dictionar_listBox1.xaml">
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -22,7 +31,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
@@ -49,13 +58,13 @@
                 </Style>
             </Grid.Resources>
 
-            <TextBlock Text="Chef de Battue :" />
-            <TextBlock Text="Observation :" Grid.Row="1"/>
-            <TextBlock Text="Date :" Grid.Column="3"/>
-            <TextBlock Text="Heure de Debut :" Grid.Column="3" Grid.Row="1"/>
-            <TextBlock Text="Heure de Fin :" Grid.Column="3" Grid.Row="2"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Chef de Battue :" />
+            <TextBlock Style="{StaticResource infoPers}" Text="Observation :" Grid.Row="1"/>
+            <TextBlock Style="{StaticResource infoPers}"  Text="Date :" Grid.Column="3"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Heure de Debut :" Grid.Column="3" Grid.Row="1"/>
+            <TextBlock Style="{StaticResource infoPers}" Text="Heure de Fin :" Grid.Column="3" Grid.Row="2"/>
 
-            <TextBlock Grid.Column="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.Chef, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
+            <TextBlock Style="{StaticResource infoPersUser}"  Grid.Column="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.Chef, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
             <TextBox Grid.Row="2" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding ElementName=listBattues, Path=SelectedItem.Description, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="4" Text="{Binding ElementName=listBattues, Path=SelectedItem.DateEvent, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="4" Grid.Row="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.HeureDebut, UpdateSourceTrigger=PropertyChanged}" />
@@ -94,9 +103,9 @@
             </DataGrid>
 
             <Grid Grid.Row="4" Grid.ColumnSpan="5" >
-                <Button HorizontalAlignment="Left" Width="80" Height="30" Content="Visualiser"/>
-                <Button HorizontalAlignment="Center" Width="80" Height="30" Content="Imprimer" Click="imprimerBattue"/>
-                <Button HorizontalAlignment="Right" Width="80" Height="30" Content="Valider" Click="validerQuiVaOu"/>
+                <Button Style="{StaticResource boutonConnexion}" HorizontalAlignment="Left" Width="120" Height="Auto" Content="Visualiser" Margin="10,-29,0,0" />
+                <Button Style="{StaticResource boutonConnexion}" HorizontalAlignment="Center" Width="120" Height="Auto" Content="Imprimer" Click="imprimerBattue" Margin="60,-29,60,0" />
+                <Button Style="{StaticResource boutonConnexion}" HorizontalAlignment="Right" Width="120" Height="Auto" Content="Valider" Click="validerQuiVaOu" Margin="0,-29,10,0" />
             </Grid>
         </Grid>
     </Grid>
