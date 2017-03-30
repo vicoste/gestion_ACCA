@@ -1,0 +1,34 @@
+﻿<Window x:Class="Projet_tut_ACCA.Vue.WValider"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
+        mc:Ignorable="d"
+        Title="WValider" Height="150" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Margin" Value="12" />
+            </Style>
+        </Grid.Resources>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="LightBlue" Offset="0"/>
+                <GradientStop Color="AliceBlue" Offset="0.497"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50*"/>
+            <ColumnDefinition Width="50*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.ColumnSpan="2"  Text="Êtes-vous sur de vouloir partir ?" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="16" Margin="0,10"/>
+        <Button x:Name="oui" Grid.Row="1" Content="Oui" Background="Green" Click="oui_Click"/>
+        <Button x:Name="non" Grid.Row="1" Grid.Column="1" Content="Non" Background="Red" Click="non_Click"/>
+    </Grid>
+</Window>
