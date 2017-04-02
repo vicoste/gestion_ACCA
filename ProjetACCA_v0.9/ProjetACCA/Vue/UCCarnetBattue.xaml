@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary 
-                  Source="Dictionar_listBox1.xaml">
+                  Source="Dictionar_style.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -26,7 +26,7 @@
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Text="{Binding Titre}" />
-                        <TextBlock Text="{Binding DateEvent}" />
+                        <TextBlock Text="{Binding DateEvent, StringFormat='{}{0:dd/MM/yyyy}'}" />
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -37,8 +37,8 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="60*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="63*"/>
+                <RowDefinition Height="7*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
@@ -66,7 +66,7 @@
 
             <TextBlock Style="{StaticResource infoPersUser}"  Grid.Column="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.Chef, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
             <TextBox Grid.Row="2" Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding ElementName=listBattues, Path=SelectedItem.Description, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox Grid.Column="4" Text="{Binding ElementName=listBattues, Path=SelectedItem.DateEvent, UpdateSourceTrigger=PropertyChanged}" />
+            <TextBox Grid.Column="4" Text="{Binding ElementName=listBattues, Path=SelectedItem.DateEvent, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy}'}" />
             <TextBox Grid.Column="4" Grid.Row="1" Text="{Binding ElementName=listBattues, Path=SelectedItem.HeureDebut, UpdateSourceTrigger=PropertyChanged}" />
             <TextBox Grid.Column="4" Grid.Row="2" Text="{Binding ElementName=listBattues, Path=SelectedItem.HeureFin, UpdateSourceTrigger=PropertyChanged}"/>
 

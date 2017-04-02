@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
-        Title="WAttribuerPoste" Height="300" Width="300" ResizeMode="NoResize">
+        Title="Attribuer un poste à " Height="300" Width="300" ResizeMode="NoResize"  >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="33*"/>

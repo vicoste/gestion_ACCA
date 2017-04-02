@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
-        Title="Ajout Membre" Height="500" Width="400"
-        ResizeMode="NoResize">
+        Title="Ajouter un nouveau Membre" Height="500" Width="400"
+        ResizeMode="NoResize"  >
     <Grid>
         <Grid.RowDefinitions>
 

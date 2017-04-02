@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary 
-                  Source="Dictionar_listBox1.xaml">
+                  Source="Dictionar_style.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -32,7 +32,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Montant" Binding="{Binding Cotisation.Paiement}"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding Cotisation.Type}"/>
-                <DataGridTextColumn Header="Date" Binding="{Binding DatePaiement}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DatePaiement, StringFormat='{}{0:dd/MM/yyyy}'}"/>
                 <DataGridTemplateColumn Header="Modification">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

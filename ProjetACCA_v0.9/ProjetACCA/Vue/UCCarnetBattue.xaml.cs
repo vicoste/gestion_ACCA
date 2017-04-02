@@ -1,20 +1,8 @@
 ﻿using Projet_tut_ACCA.Metier;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Projet_tut_ACCA.Vue
 {
@@ -36,11 +24,11 @@ namespace Projet_tut_ACCA.Vue
         private void attribuerPoste(object sender, RoutedEventArgs e)
         {
             CarnetBattue battue = (CarnetBattue)listBattues.SelectedItem;
-            WAttribuerPoste w = new WAttribuerPoste(battue.Zone.ListPoste, battue.QuiVaOu);
+            Adherent a = (Adherent)gridPoste.SelectedItem;
+            WAttribuerPoste w = new WAttribuerPoste(battue.Zone.ListPoste, battue.QuiVaOu, a.ToString());
             if(w.ShowDialog() == true)
             {
                 Poste p = null;
-                Adherent a = (Adherent)gridPoste.SelectedItem;
                 foreach (var v in battue.QuiVaOu)
                 {
                     if(v.Value.IdAdherent == a.IdAdherent)

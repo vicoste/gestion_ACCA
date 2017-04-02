@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary 
-                  Source="Dictionar_listBox1.xaml">
+                  Source="Dictionar_style.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -18,8 +18,9 @@
     
     <Grid DataContext="{Binding currentUser}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*" />
             <ColumnDefinition Width="30*" />
-            <ColumnDefinition Width="70*" />
+            <ColumnDefinition Width="50*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
@@ -46,7 +47,7 @@
         <TextBlock Style="{StaticResource infoPers}" Text="Statut :" Grid.Row="2" />
         <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxStatut" Grid.Row="2" Grid.Column="1" Text="{Binding Adherent.Statut}" />
         <TextBlock Style="{StaticResource infoPers}" Text="Date d'adhésion :" Grid.Row="3" />
-        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxDate" Grid.Row="3" Grid.Column="1" Text="{Binding Adherent.DateAdhesion}" />
+        <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxDate" Grid.Row="3" Grid.Column="1" Text="{Binding Adherent.DateAdhesion, StringFormat='{}{0:dd/MM/yyyy}'}" />
         <TextBlock Style="{StaticResource infoPers}" Text="Adresse :" Grid.Row="4" />
         <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxAdresse" Grid.Row="4" Grid.Column="1" Text="{Binding Adherent.Adresse}" />
         <TextBlock Style="{StaticResource infoPers}" Text="N° de Téléphone :" Grid.Row="5" />
@@ -56,8 +57,17 @@
         <TextBlock Style="{StaticResource infoPers}" Text="Qualité du Societaire :" Grid.Row="7" />
         <TextBlock Style="{StaticResource infoPersUser}" x:Name="TextBoxSoc" Grid.Row="7" Grid.Column="1" Text="{Binding Fonction.Role}" />
 
-        <Border BorderBrush="DarkBlue" BorderThickness="5" Grid.Row="8" Grid.ColumnSpan="2" Margin="5" Padding="5">
+        <Border BorderBrush="DarkBlue" BorderThickness="5" Grid.Row="8" Grid.ColumnSpan="3" Margin="5" Padding="5">
             <TextBlock x:Name="infoFonction" TextAlignment="Left" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="20"/>
         </Border>
+
+        <TextBlock Grid.Column="2" Grid.Row="1" Text="Changer de mot de passe :" Style="{StaticResource infoPers}" HorizontalAlignment="Center"/>
+        <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Width="auto" Text="Ancien :" Style="{StaticResource infoPers}" Margin="40,5,0,5"/>
+        <PasswordBox x:Name="ancien" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Width="200" Margin="0,5,20,5"/>
+        <TextBlock Grid.Column="2" Grid.Row="3" HorizontalAlignment="Left" Width="auto" Text="Nouveau :" Style="{StaticResource infoPers}" Margin="40,5,0,5"/>
+        <PasswordBox x:Name="newM" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Right" Width="200" Margin="0,5,20,5"/>
+        <TextBlock Grid.Column="2" Grid.Row="4" HorizontalAlignment="Left" Width="auto" Text="Répéter :" Style="{StaticResource infoPers}" Margin="40,5,0,5"/>
+        <PasswordBox x:Name="newMR" Grid.Column="2" Grid.Row="4" HorizontalAlignment="Right" Width="200" Margin="0,5,20,5"/>
+        <Button Grid.Column="2" Grid.Row="5" Width="75" Content="Valider" Click="button_changeMdp_click"/>
     </Grid>
 </UserControl>

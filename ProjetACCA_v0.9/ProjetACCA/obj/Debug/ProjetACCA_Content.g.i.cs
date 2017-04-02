@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/sanglier_connexion.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("image/main_icon.png")]
 
 

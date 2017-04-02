@@ -147,8 +147,8 @@ namespace Projet_tut_ACCA.Metier
                 DateTime debut = (DateTime)reader["DateDebut"];
                 DateTime fin = (reader["DateFin"] as DateTime?).GetValueOrDefault(new DateTime(1,1,1));
                 string role = (string)reader["RoleAdherent"];
-                allFonction += "Du : " + debut
-                    + "\tAu : " + (fin.Equals(new DateTime(1, 1, 1)) ? "Encore aujourd'hui" : fin.ToString()) + "\t"
+                allFonction += "Du : " + debut.ToString("d")
+                    + "\tAu : " + (fin.Equals(new DateTime(1, 1, 1)) ? "Encore aujourd'hui" : fin.ToString("d")) + "\t"
                     + "\tFonction : " + role + "\n";
             }
 

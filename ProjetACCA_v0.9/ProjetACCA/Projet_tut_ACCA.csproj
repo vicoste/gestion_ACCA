@@ -111,7 +111,7 @@
     <Compile Include="Vue\WValider.xaml.cs">
       <DependentUpon>WValider.xaml</DependentUpon>
     </Compile>
-    <Page Include="Vue\Dictionar_listBox1.xaml">
+    <Page Include="Vue\Dictionar_style.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -237,31 +237,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Image\arrowleft.png" />
-    <Resource Include="Image\arrow_next_go_forward-128.png" />
-    <Resource Include="Image\Breakingbad.jpg" />
-    <Resource Include="Image\cog.png" />
-    <Resource Include="Image\cut.png" />
-    <Resource Include="Image\default.gif" />
-    <Resource Include="Image\dexter.jpg" />
-    <Resource Include="Image\email.png" />
-    <Resource Include="Image\go.png" />
-    <Resource Include="Image\GOT.bmp" />
-    <Resource Include="Image\house-of-cards.jpg" />
-    <Resource Include="Image\information.png" />
-    <Resource Include="Image\iu.png" />
-    <Resource Include="Image\kaamelott.jpg" />
-    <Resource Include="Image\magnifier.png" />
-    <Resource Include="Image\moins.jpeg" />
-    <Resource Include="Image\paste.png" />
-    <Resource Include="Image\Plus.jpeg" />
-    <Resource Include="Image\plus.png" />
-    <Resource Include="Image\reset.png" />
-    <Resource Include="Image\StarWarsRebel.jpg" />
-    <Resource Include="Image\themaninthehighcastle.jpg" />
-    <Resource Include="Image\vikings.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
@@ -274,7 +249,24 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Image\558062.png" />
+    <Resource Include="Image\arrowleft.png" />
+    <Resource Include="Image\arrow_next_go_forward-128.png" />
+    <Resource Include="Image\cog.png" />
+    <Resource Include="Image\cut.png" />
+    <Resource Include="Image\email.png" />
+    <Resource Include="Image\go.png" />
+    <Resource Include="Image\information.png" />
+    <Resource Include="Image\magnifier.png" />
+    <Resource Include="Image\moins.jpeg" />
+    <Resource Include="Image\paste.png" />
+    <Resource Include="Image\Plus.jpeg" />
+    <Resource Include="Image\plus.png" />
+    <Resource Include="Image\reset.png" />
     <Resource Include="Image\Sanglier_connexion.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image\main_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

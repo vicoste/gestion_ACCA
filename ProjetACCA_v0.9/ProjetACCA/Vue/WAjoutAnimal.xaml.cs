@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Projet_tut_ACCA.Metier;
 
@@ -44,7 +34,7 @@ namespace Projet_tut_ACCA.Vue
             if (type.Equals("Nouveau Type"))
             {
                 type = textBoxDefType.Text;
-                autorisations.Add(new Autorisation(type, -1, 0));
+                //autorisations.Add(new Autorisation(type, -1, 0));
             }
 
             if (type.Equals("")) { MessageBox.Show("Erreur : le nouveau type est vide !"); return; }
@@ -70,17 +60,19 @@ namespace Projet_tut_ACCA.Vue
             }
 
             int numBague, tBague;
-            bool rParse;
-            rParse = Int32.TryParse(boxBague.Text.ToString(), out numBague);
+            Int32.TryParse(boxBague.Text.ToString(), out numBague);
             tBague = testBague(type, numBague);
 
-            if (rParse == false || tBague == -1 && numBague != -1) { MessageBox.Show("Erreur : le numéro de bague est invalide !"); return; }
-
-            if (tBague == 0)
+            if(tBague == -1)
             {
-                newA = new Animal(type, numBague, datePrelev, sexe, masse, obs, idPoste);
+                newA = new Animal(type, -1, datePrelev, sexe, masse, obs, idPoste);
                 newA.IsNew = true;
                 DialogResult = true;
+                return;
+            }
+            if (tBague == 0)
+            {
+                MessageBox.Show("Erreur : le numéro de bague est invalide !");
                 return;
             }
 
@@ -102,15 +94,15 @@ namespace Projet_tut_ACCA.Vue
 
         private int testBague(string type, int bague)
         {
-            if (autorisations.First(a => a.Key.Equals(type)).Value == -1)
-                return 0;
-
-            if (lesAnimaux.Count(a => a.NumBague == bague) == 0)
+            if (autorisations.Count(a => a.Key.Equals(type)) == 0)
                 return -1;
 
-            var l = lesAnimaux.Where(a => a.Type.Equals(type) && a.NumBague == bague);
-            if (l.Count() == 1)
-                return l.ElementAt(0).Observation.Equals("Non rempli") ? 1 : -1;
+            if (autorisations.First(a => a.Key.Equals(type)).Value == 0)
+                return 0;
+
+            var animauxBague = lesAnimaux.Where(a => a.Type.Equals(type) && a.NumBague == bague);
+            if (animauxBague.Count() == 1)
+                return animauxBague.ElementAt(0).Observation.Equals("Non rempli") ? 1 : 0;
 
             return 0;
         }

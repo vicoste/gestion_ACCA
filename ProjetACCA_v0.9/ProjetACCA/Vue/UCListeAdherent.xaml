@@ -11,7 +11,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary 
-                  Source="Dictionar_listBox1.xaml">
+                  Source="Dictionar_style.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -47,7 +47,7 @@
                 <DataGridTextColumn Header="Adresse" Binding="{Binding Adherent.Adresse, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Téléphone" Binding="{Binding Adherent.Tel, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="e-Mail" Binding="{Binding Adherent.Mail, UpdateSourceTrigger=PropertyChanged}"/>
-                <DataGridTextColumn Header="Date de Debut" Binding="{Binding DateDebut, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Date de Debut" Binding="{Binding DateDebut, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy}'}"/>
                 <DataGridComboBoxColumn x:Name="comboFonction" Header="Changer de Fonction" SelectedItemBinding="{Binding Fonction.Role, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTemplateColumn Header="Operations">
                     <DataGridTemplateColumn.CellTemplate>

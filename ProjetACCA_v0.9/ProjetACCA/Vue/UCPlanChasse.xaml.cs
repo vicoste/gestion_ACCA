@@ -1,19 +1,12 @@
 ﻿using Projet_tut_ACCA.Metier;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Projet_tut_ACCA.Vue
 {
@@ -56,6 +49,30 @@ namespace Projet_tut_ACCA.Vue
             Animal a = (Animal)gridAnimaux.SelectedItem;
             Animal.supprimerInfos(a.NumBague, a.DatePrelevement);
             LesAnimaux.Remove(a);
+        }
+
+        private void rechercheByDate(object sender, RoutedEventArgs e)
+        {
+            dateRecherche.Foreground = Brushes.Black;
+            Regex regexDate = new Regex("([0-9]{0,2})[\\/\\- ]([0-9]{0,2})[\\/\\- ]([0-9]{1,4})");
+            string date = dateRecherche.Text;
+            if (regexDate.IsMatch(date))
+            {
+                date = date.Replace("00/", "");
+                ICollectionView animaux = CollectionViewSource.GetDefaultView(gridAnimaux.ItemsSource);
+                animaux.Filter = new Predicate<object>(a => (a as Animal).DatePrelevement.ToString().Contains(date));
+            }
+            else
+            {
+                dateRecherche.Foreground = Brushes.Red;
+            }
+        }
+
+        private void resetFilter(object sender, RoutedEventArgs e)
+        {
+            dateRecherche.Text = "";
+            ICollectionView animaux = CollectionViewSource.GetDefaultView(gridAnimaux.ItemsSource);
+            animaux.Filter = null;
         }
     }
 }

@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
         Height="600" Width="400"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Title="Entrer un Animal chassé"  >
     <Grid>
         <Grid.RowDefinitions>
 

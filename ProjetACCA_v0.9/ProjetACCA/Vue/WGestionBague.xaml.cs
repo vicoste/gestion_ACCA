@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+﻿using System.Windows;
 using System.Collections.ObjectModel;
 using Projet_tut_ACCA.Metier;
 
@@ -41,6 +29,12 @@ namespace Projet_tut_ACCA.Vue
         private void button_annuler_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;
+        }
+
+        private void button_ajouterType_Click(object sender, RoutedEventArgs e)
+        {
+            if(!newType.Text.Equals("") && !newType.Text.Equals(" "))
+                autorisations.Add(new Autorisation(newType.Text, 0, 0));
         }
     }
 }

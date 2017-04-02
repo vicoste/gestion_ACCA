@@ -11,7 +11,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary 
-                  Source="Dictionar_listBox1.xaml">
+                  Source="Dictionar_style.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -22,11 +22,27 @@
             <RowDefinition Height="70*"/>
             <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
+
+        <WrapPanel VerticalAlignment="Center">
+            <TextBlock Text="Rechercher par une date" VerticalAlignment="Center"/>
+            <TextBox x:Name="dateRecherche" Width="105" VerticalAlignment="Center" Margin="20,2">
+                <TextBox.ToolTip>jj/mm/aaaa</TextBox.ToolTip>
+            </TextBox>
+            <Button Click="rechercheByDate" Margin="0,2" Width="25" Height="25" Background="White" BorderBrush="#199D33" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button.ToolTip>Rechercher</Button.ToolTip>
+                <Image Source="/Image/Magnifier.png"/>
+            </Button>
+            <Button Click="resetFilter" Margin="0,2" Width="25" MinHeight="25" Background="White" BorderBrush="#199D33" HorizontalAlignment="Left" VerticalAlignment="Center">
+                <Button.ToolTip>Réinitialiser</Button.ToolTip>
+                <Image Source="/Image/reset.png"/>
+            </Button>
+        </WrapPanel>
+        
         <DataGrid x:Name="gridAnimaux" ItemsSource="{Binding Path=LesAnimaux, UpdateSourceTrigger=PropertyChanged}" AutoGenerateColumns="False" Grid.Row="1" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type" Binding="{Binding Type, UpdateSourceTrigger=PropertyChanged}" SortDirection="Ascending" CanUserReorder="False" MinWidth="100"/>
                 <DataGridTextColumn Header="N° Bague" Binding="{Binding NumBague, UpdateSourceTrigger=PropertyChanged}" />
-                <DataGridTextColumn Header="Date" Binding="{Binding DatePrelevement, UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Date" Binding="{Binding DatePrelevement, UpdateSourceTrigger=PropertyChanged, StringFormat='{}{0:dd/MM/yyyy}'}"/>
                 <DataGridTextColumn Header="Sexe" Binding="{Binding Sexe, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Poids" Binding="{Binding Masse, UpdateSourceTrigger=PropertyChanged}"/>
                 <DataGridTextColumn Header="Observation" Binding="{Binding Observation, UpdateSourceTrigger=PropertyChanged}" MinWidth="300"/>
@@ -34,7 +50,17 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <WrapPanel>
-                                <Button Content="Suppr." Click="supprAnimal"/>
+                                <Button Content="Suppr." Click="supprAnimal" Width="70">
+                                    <Button.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Sexe}" Value="N">
+                                                    <Setter Property="Button.Visibility" Value="Hidden"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </WrapPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

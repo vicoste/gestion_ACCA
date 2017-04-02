@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
-        Title="WValider" Height="150" Width="300" ResizeMode="NoResize">
+        Title="Valider votre choix ?" Height="150" Width="300" ResizeMode="NoResize"  >
     <Grid>
         <Grid.Resources>
             <Style TargetType="Button">

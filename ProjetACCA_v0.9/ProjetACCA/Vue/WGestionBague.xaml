@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:Projet_tut_ACCA.Vue"
         mc:Ignorable="d"
         Height="500" Width="400"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        Title="Gestionnaire des autorisations"  >
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70*" />
+            <RowDefinition Height="10*" />
+            <RowDefinition Height="60*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="10*" />
@@ -19,7 +21,13 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <ListBox x:Name="listAutos" ItemsSource="{Binding autorisations, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
+
+        <WrapPanel Grid.ColumnSpan="2">
+            <TextBox x:Name="newType" Width="200" Height="30" VerticalAlignment="Center" Margin="5"/>
+            <Button Width="140" Height="30" VerticalAlignment="Center" Margin="5" Content="Ajouter Type" Click="button_ajouterType_Click" />
+        </WrapPanel>
+        
+        <ListBox x:Name="listAutos" Grid.Row="1" ItemsSource="{Binding autorisations, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock VerticalAlignment="Center">
@@ -33,10 +41,10 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <TextBox x:Name="valueAuto" Grid.Row="1" Text="{Binding SelectedItem.Value, ElementName=listAutos, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Row="2" Text="Numéro de la 1ere bague :" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <TextBox x:Name="numPremiereBague" Grid.Row="2" Grid.Column="1" Text="{Binding SelectedItem.PremiereBague, ElementName=listAutos, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Button Content="Quitter" Grid.Row="3" Click="button_annuler_Click"/>
-        <Button Content="Valider" Grid.Row="3" Grid.Column="1" Click="button_valider_Click"/>
+        <TextBox x:Name="valueAuto" Grid.Row="2" Text="{Binding SelectedItem.Value, ElementName=listAutos, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Row="3" Text="Numéro de la 1ere bague :" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <TextBox x:Name="numPremiereBague" Grid.Row="3" Grid.Column="1" Text="{Binding SelectedItem.PremiereBague, ElementName=listAutos, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button Content="Quitter" Grid.Row="4" Click="button_annuler_Click"/>
+        <Button Content="Valider" Grid.Row="4" Grid.Column="1" Click="button_valider_Click"/>
     </Grid>
 </Window>

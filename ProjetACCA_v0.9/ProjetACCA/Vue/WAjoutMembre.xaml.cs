@@ -1,16 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using Projet_tut_ACCA.Metier;
 using System.Text.RegularExpressions;
@@ -73,21 +62,18 @@ namespace Projet_tut_ACCA.Vue
             prenom = prenom.ToLower();
 
             nom = replaceAccent("[àâä]", nom, "a");
-            prenom = replaceAccent("[àâä]", nom, "a");
+            prenom = replaceAccent("[àâä]", prenom, "a");
             nom = replaceAccent("[éèêë]", nom, "e");
-            prenom = replaceAccent("[éèêë]", nom, "e");
+            prenom = replaceAccent("[éèêë]", prenom, "e");
             nom = replaceAccent("[îï]", nom, "i");
-            prenom = replaceAccent("[îï]", nom, "i");
+            prenom = replaceAccent("[îï]", prenom, "i");
 
             int i = 0;
-            String s1;
+            string s1;
             if (prenom.Length < 2) s1 = prenom;
             else s1 = prenom.Substring(0, 2);
-            String s2;
-            if (nom.Length < 6) s2 = nom;
-            else s2 = nom.Substring(0, 6);
 
-            String res = s1 + s2;
+            string res = s1 + nom;
             foreach(Fonctionnaire f in listeFontionnaires)
             {
                 if (f.Adherent.Login.Equals(res))

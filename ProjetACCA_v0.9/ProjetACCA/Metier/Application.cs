@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
-using System.Configuration;
 
 namespace Projet_tut_ACCA.Metier
 {
@@ -62,8 +57,8 @@ namespace Projet_tut_ACCA.Metier
         public static SqlConnection getInstance()
         {
             string dir = System.IO.Directory.GetCurrentDirectory();
-            string connectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename ="+ dir.Substring(0, dir.Length - 9) + "BDACCA.mdf; Integrated Security = True; Connect Timeout = 30";
-            return instance = new SqlConnection(connectionString);
+            string connectionstring = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename ="+ dir.Substring(0, dir.Length - 9) + "BDACCA.mdf; Integrated Security = True; Connect Timeout = 30";
+            return instance = new SqlConnection(connectionstring);
         }
 
         public Fonctionnaire connexion(string login, string mdp)

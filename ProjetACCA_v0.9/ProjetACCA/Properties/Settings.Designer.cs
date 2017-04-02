@@ -28,9 +28,9 @@ namespace Projet_tut_ACCA.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\DBACCA.mdf;In" +
             "tegrated Security=True;Connect Timeout=30")]
-        public string DBACCAConnectionString {
+        public string DBACCAConnectionstring {
             get {
-                return ((string)(this["DBACCAConnectionString"]));
+                return ((string)(this["DBACCAConnectionstring"]));
             }
         }
     }

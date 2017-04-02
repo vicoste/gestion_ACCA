@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary 
-                  Source="Dictionar_listBox1.xaml">
+                  Source="Dictionar_style.xaml">
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -23,8 +23,8 @@
         </Grid.ColumnDefinitions>
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="90*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="87*"/>
+                <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <ListBox x:Name="listZones" ItemsSource="{Binding lesZones}" IsSynchronizedWithCurrentItem="True">
                 <ListBox.ItemTemplate>
@@ -37,8 +37,8 @@
         </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="90*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="87*"/>
+                <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <ListBox x:Name="listPostes" ItemsSource="{Binding SelectedItem.ListPoste, ElementName=listZones}" Margin="5,0" >
                 <ListBox.ItemTemplate>
@@ -56,8 +56,8 @@
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
                 <RowDefinition Height="10*"/>
-                <RowDefinition Height="40*"/>
-                <RowDefinition Height="10*"/>
+                <RowDefinition Height="37*"/>
+                <RowDefinition Height="13*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />

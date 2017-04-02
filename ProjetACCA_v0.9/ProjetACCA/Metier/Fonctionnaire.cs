@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.ObjectModel;
 
@@ -105,7 +100,7 @@ namespace Projet_tut_ACCA.Metier
                     //---------UPDATE TAderent---------
                     connection.Open();
 
-                    string commandUTAd = "UPDATE TAdherent SET Nom = @Nom, Prenom = @Prenom, Statut = @Statut, Adresse = @Adresse, Telephone = @Telephone, Mail = @Mail WHERE Matricule = @Matricule";
+                    string commandUTAd = "UPDATE TAdherent SET Nom = @Nom, Prenom = @Prenom, Statut = @Statut, Adresse = @Adresse, Telephone = @Telephone, Mail = @Mail, Mdp = @Mdp WHERE Matricule = @Matricule";
 
                     SqlCommand sqlCommandUTAd = new SqlCommand(commandUTAd, connection);
 
@@ -116,6 +111,7 @@ namespace Projet_tut_ACCA.Metier
                     sqlCommandUTAd.Parameters.AddWithValue("@Adresse", f.Adherent.Adresse);
                     sqlCommandUTAd.Parameters.AddWithValue("@Telephone", f.Adherent.Tel);
                     sqlCommandUTAd.Parameters.AddWithValue("@Mail", f.Adherent.Mail);
+                    sqlCommandUTAd.Parameters.AddWithValue("@Mdp", f.Adherent.Mdp);
 
                     sqlCommandUTAd.ExecuteNonQuery();
 
